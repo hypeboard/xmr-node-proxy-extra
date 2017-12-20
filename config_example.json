@@ -1,53 +1,41 @@
 {
   "pools": [
     {
-      "hostname": "pool.supportxmr.com",
+      "hostname": "pool.electroneum.space",
       "port": 7777,
       "ssl": false,
       "allowSelfSignedSSL": false,
-      "share": 80,
-      "username": "46XWBqE1iwsVxSDP1qDrxhE1XvsZV6eALG5LwnoMdjbT4GPdy2bZTb99kagzxp2MMjUamTYZ4WgvZdFadvMimTjvR6Gv8hL",
-      "password": "proxy:totally.valid@snipanet.com",
+      "share": 100,
+      "username": "",
+      "password": "x",
       "keepAlive": true,
-      "coin": "xmr",
-      "default": false
-    },
-    {
-      "hostname": "mine.xmrpool.net",
-      "port": 7778,
-      "ssl": false,
-      "allowSelfSignedSSL": false,
-      "share": 20,
-      "username": "46XWBqE1iwsVxSDP1qDrxhE1XvsZV6eALG5LwnoMdjbT4GPdy2bZTb99kagzxp2MMjUamTYZ4WgvZdFadvMimTjvR6Gv8hL",
-      "password": "proxy:totally.valid@snipanet.com",
-      "keepAlive": true,
-      "coin": "xmr",
+      "coin": "etn",
       "default": true
     }
   ],
   "listeningPorts": [
     {
-      "port": 8080,
-      "ssl": false,
-      "diff": 5000,
-      "coin": "xmr"
-    },
-    {
-      "port": 8443,
-      "ssl": true,
-      "diff": 5000,
-      "coin": "xmr"
-    },
-    {
       "port": 3333,
       "ssl": false,
+      "diff": 3000,
+      "coin": "etn"
+    },
+    {
+      "port": 5555,
+      "ssl": true,
       "diff": 10000,
-      "coin": "xmr"
+      "coin": "etn"
+    },
+    {
+      "port": 7777,
+      "ssl": false,
+      "diff": 50000,
+      "coin": "etn"
     }
   ],
   "bindAddress": "0.0.0.0",
-  "developerShare": 1,
-  "daemonAddress": "127.0.0.1:18081",
+  "developerShare": 0,
+  "daemonAddress": "127.0.0.1:26968",
   "coinSettings": {
     "xmr":{
       "minDiff": 100,
@@ -58,6 +46,11 @@
       "minDiff": 100,
       "maxDiff": 300000,
       "shareTargetTime": 15
+    },
+    "etn":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 60
     }
   }
 }
