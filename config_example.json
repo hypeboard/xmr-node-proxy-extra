@@ -7,7 +7,7 @@
       "allowSelfSignedSSL": false,
       "share": 100,
       "username": "etnkMVskQTfNtXBf56EZLzg8FhPf7iko9gukXstYX6uYAMHcyTVjkVCfDYkMYBG4T84zYdu8P6BhwEWz2Ab1SDBh7AcmgiPTNf",
-      "password": "x",
+      "password": "nodeproxy",
       "keepAlive": true,
       "coin": "etn",
       "default": true
@@ -19,7 +19,7 @@
       "allowSelfSignedSSL": false,
       "share": 100,
       "username": "Wms9NLr7UqrShuU4eK9bWgUSWgUjdYehsgv5hkBSZLUNcPUwBia118ATNNMKpKN9PbWwiZDMv7vu7JAASS9VWfiy1LaXt3Xoa",
-      "password": "x",
+      "password": "nodeproxy",
       "keepAlive": true,
       "coin": "aeon",
       "default": true
