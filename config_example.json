@@ -46,7 +46,7 @@
     },
     {
       "port": 5555,
-      "ssl": true,
+      "ssl": false,
       "diff": 100,
       "coin": "aeon"
     },
