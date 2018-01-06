@@ -23,7 +23,7 @@
       "keepAlive": true,
       "coin": "aeon",
       "default": true
-    },
+    }
   ],
   "listeningPorts": [
     {
