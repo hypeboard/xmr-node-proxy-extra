@@ -1,8 +1,8 @@
 {
   "pools": [
     {
-      "hostname": "pool.electroneum.space",
-      "port": 7777,
+      "hostname": "etn-pool.semipool.com",
+      "port": 3333,
       "ssl": false,
       "allowSelfSignedSSL": false,
       "share": 100,
@@ -11,46 +11,82 @@
       "keepAlive": true,
       "coin": "etn",
       "default": true
-    }
+    },
+    {
+      "hostname": "aeon-pool.semipool.com",
+      "port": 3333,
+      "ssl": false,
+      "allowSelfSignedSSL": false,
+      "share": 100,
+      "username": "",
+      "password": "x",
+      "keepAlive": true,
+      "coin": "aeon",
+      "default": true
+    },
   ],
   "listeningPorts": [
     {
+      "port": 8080,
+      "ssl": false,
+      "diff": 100,
+      "coin": "etn"
+    },
+    {
+      "port": 8443,
+      "ssl": true,
+      "diff": 100,
+      "coin": "etn"
+    },
+    {
       "port": 3333,
       "ssl": false,
-      "diff": 3000,
+      "diff": 100,
       "coin": "etn"
     },
     {
       "port": 5555,
       "ssl": true,
-      "diff": 10000,
-      "coin": "etn"
+      "diff": 100,
+      "coin": "aeon"
     },
+    {
+      "port": 5000,
+      "ssl": false,
+      "diff": 1000,
+      "coin": "aeon"
+    },
+    {
+      "port": 6000,
+      "ssl": false,
+      "diff": 500,
+      "coin": "etn"
+    }, 
     {
       "port": 7777,
       "ssl": false,
-      "diff": 50000,
-      "coin": "etn"
+      "diff": 100,
+      "coin": "xmr"
     }
   ],
   "bindAddress": "0.0.0.0",
-  "developerShare": 0,
+  "developerShare": 1,
   "daemonAddress": "127.0.0.1:26968",
   "coinSettings": {
     "xmr":{
       "minDiff": 100,
       "maxDiff": 300000,
-      "shareTargetTime": 15
+      "shareTargetTime": 2
     },
     "aeon":{
       "minDiff": 100,
       "maxDiff": 300000,
-      "shareTargetTime": 15
+      "shareTargetTime": 2
     },
     "etn":{
       "minDiff": 100,
       "maxDiff": 300000,
-      "shareTargetTime": 60
+      "shareTargetTime": 2
     }
   }
 }
