@@ -105,6 +105,7 @@ Please contact Snipa at: proxy_installs@snipanet.com or via IRC on irc.freenode.
 * [MoriaXMR.com](https://moriaxmr.com)
 * [MoneroOcean.stream](https://moneroocean.stream)
 * [SECUmine.net](https://secumine.net)
-* [semiPOOL.com](https://semipool.com)
+* [etn.semiPOOL.com](https://etn.semipool.com)
+* [aeon.semiPOOL.com](https://aeon.semipool.com)
 
 If you'd like to have your pool added, please make a pull request here, or contact Snipa on IRC!
