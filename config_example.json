@@ -87,6 +87,21 @@
       "minDiff": 100,
       "maxDiff": 300000,
       "shareTargetTime": 2
+    },
+    "bcn":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 2
+    },
+    "sumo":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 2
+    },
+    "itns":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 2
     }
   }
 }
