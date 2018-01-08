@@ -79,12 +79,6 @@
       "ssl": false,
       "diff": 100,
       "coin": "sumo"
-    }, 
-    {
-      "port": 6666,
-      "ssl": false,
-      "diff": 100,
-      "coin": "itns"
     }
   ],
   "bindAddress": "0.0.0.0",
