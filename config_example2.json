@@ -1,0 +1,107 @@
+{
+  "pools": [
+    {
+      "hostname": "etn-pool.semipool.com",
+      "port": 3333,
+      "ssl": false,
+      "allowSelfSignedSSL": false,
+      "share": 100,
+      "username": "etnkMVskQTfNtXBf56EZLzg8FhPf7iko9gukXstYX6uYAMHcyTVjkVCfDYkMYBG4T84zYdu8P6BhwEWz2Ab1SDBh7AcmgiPTNf",
+      "password": "nodeproxy",
+      "keepAlive": true,
+      "coin": "etn",
+      "default": true
+    },
+    {
+      "hostname": "aeon-pool.semipool.com",
+      "port": 3333,
+      "ssl": false,
+      "allowSelfSignedSSL": false,
+      "share": 100,
+      "username": "Wms9NLr7UqrShuU4eK9bWgUSWgUjdYehsgv5hkBSZLUNcPUwBia118ATNNMKpKN9PbWwiZDMv7vu7JAASS9VWfiy1LaXt3Xoa",
+      "password": "nodeproxy",
+      "keepAlive": true,
+      "coin": "aeon",
+      "default": true
+    }
+  ],
+  "listeningPorts": [
+    {
+      "port": 8080,
+      "ssl": false,
+      "diff": 100,
+      "coin": "etn"
+    },
+    {
+      "port": 8443,
+      "ssl": true,
+      "diff": 100,
+      "coin": "etn"
+    },
+    {
+      "port": 3333,
+      "ssl": false,
+      "diff": 100,
+      "coin": "etn"
+    },
+    {
+      "port": 5555,
+      "ssl": false,
+      "diff": 100,
+      "coin": "aeon"
+    },
+    {
+      "port": 5000,
+      "ssl": false,
+      "diff": 1000,
+      "coin": "aeon"
+    },
+    {
+      "port": 6000,
+      "ssl": false,
+      "diff": 500,
+      "coin": "etn"
+    }, 
+    {
+      "port": 7777,
+      "ssl": false,
+      "diff": 100,
+      "coin": "xmr"
+    }
+  ],
+  "bindAddress": "0.0.0.0",
+  "developerShare": 1,
+  "daemonAddress": "127.0.0.1:26968",
+  "coinSettings": {
+    "xmr":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 2
+    },
+    "aeon":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 2
+    },
+    "etn":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 2
+    },
+    "bcn":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 2
+    },
+    "sumo":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 2
+    },
+    "itns":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 2
+    }
+  }
+}
