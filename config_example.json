@@ -23,6 +23,18 @@
       "keepAlive": true,
       "coin": "aeon",
       "default": true
+    },
+    {
+      "hostname": "pool.supportxmr.com",
+      "port": 5555,
+      "ssl": false,
+      "allowSelfSignedSSL": false,
+      "share": 100,
+      "username": "42zhPZrn29hhh6v7TCfdydXuMoztiHJKNUiS6LaEGP7nNQA5m8yECK7T3MCC5ZaRDUW2cRYwCGR8VRGxpfpCtscQ7tUxn67",
+      "password": "nodeproxy",
+      "keepAlive": true,
+      "coin": "xmr",
+      "default": true
     }
   ],
   "listeningPorts": [
