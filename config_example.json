@@ -2,7 +2,7 @@
   "pools": [
     {
       "hostname": "etn-pool.semipool.com",
-      "port": 3333,
+      "port": 5555,
       "ssl": false,
       "allowSelfSignedSSL": false,
       "share": 100,
@@ -14,7 +14,7 @@
     },
     {
       "hostname": "aeon-pool.semipool.com",
-      "port": 3333,
+      "port": 5555,
       "ssl": false,
       "allowSelfSignedSSL": false,
       "share": 100,
@@ -51,22 +51,28 @@
       "coin": "aeon"
     },
     {
-      "port": 5000,
-      "ssl": false,
-      "diff": 1000,
-      "coin": "aeon"
-    },
-    {
-      "port": 6000,
-      "ssl": false,
-      "diff": 500,
-      "coin": "etn"
-    }, 
-    {
       "port": 7777,
       "ssl": false,
       "diff": 100,
       "coin": "xmr"
+    },
+    {
+      "port": 2222,
+      "ssl": false,
+      "diff": 100,
+      "coin": "bcn"
+    },
+    {
+      "port": 4444,
+      "ssl": false,
+      "diff": 100,
+      "coin": "sumo"
+    }, 
+    {
+      "port": 6666,
+      "ssl": false,
+      "diff": 100,
+      "coin": "itns"
     }
   ],
   "bindAddress": "0.0.0.0",
