@@ -9,9 +9,9 @@ Based on a clean Ubuntu 16.04 LTS minimal install
 
 1. Create a user 'nodeproxy' and assign a password (or add an SSH key. If you prefer that, you should already know how to do it)
 
-A. If you have less than 4Gb RAM, you should add swap
+A. If you have less than 4Gb RAM, you should add swap. Swap is used for compiling the proxy installation but for running proxy 512Mb or 1Gb is enough, very lightweight.
 ```bash
-sudo fallocate -l 5G /swapfile
+sudo fallocate -l 4G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
