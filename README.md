@@ -10,11 +10,13 @@ Based on a clean Ubuntu 16.04 LTS minimal install
 1. Create a user 'nodeproxy' and assign a password (or add an SSH key. If you prefer that, you should already know how to do it)
 
 A. If you have less than 4Gb RAM, you should add swap
-```sudo fallocate -l 5G /swapfile
+```bash
+sudo fallocate -l 5G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
-echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab```
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+```
 
 B. New user
 ```bash
