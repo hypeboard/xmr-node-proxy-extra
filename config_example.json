@@ -2,7 +2,7 @@
   "pools": [
     {
       "hostname": "etn-pool.semipool.com",
-      "port": 5555,
+      "port": 7777,
       "ssl": false,
       "allowSelfSignedSSL": false,
       "share": 100,
@@ -14,7 +14,7 @@
     },
     {
       "hostname": "aeon-pool.semipool.com",
-      "port": 5555,
+      "port": 7777,
       "ssl": false,
       "allowSelfSignedSSL": false,
       "share": 100,
@@ -26,7 +26,7 @@
     },
     {
       "hostname": "pool.supportxmr.com",
-      "port": 5555,
+      "port": 7777,
       "ssl": false,
       "allowSelfSignedSSL": false,
       "share": 100,
