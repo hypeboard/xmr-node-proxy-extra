@@ -18,7 +18,7 @@ sudo swapon /swapfile
 echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 ```
 
-B. New user
+B. Adding new user
 ```bash
 useradd -d /home/nodeproxy -m -s /bin/bash nodeproxy
 passwd nodeproxy
