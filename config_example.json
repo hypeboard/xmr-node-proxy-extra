@@ -25,6 +25,18 @@
       "default": true
     },
     {
+      "hostname": "pool.itnspool.net",
+      "port": 7777,
+      "ssl": false,
+      "allowSelfSignedSSL": false,
+      "share": 100,
+      "username": "iz5WBfVURQPSM4tC13xybaKYZVESARDJF78Sh6BHrR1VQrRepJa9prRZS9YwXfggWuQsjMSDNbPj214xEKeURdhH1GhDUtfHP",
+      "password": "proxy:totally.valid@venthos.net",
+      "keepAlive": true,
+      "coin": "itns",
+      "default": true
+    },
+    {
       "hostname": "pool.supportxmr.com",
       "port": 7777,
       "ssl": false,
@@ -88,32 +100,32 @@
     "xmr":{
       "minDiff": 100,
       "maxDiff": 300000,
-      "shareTargetTime": 2
+      "shareTargetTime": 15
     },
     "aeon":{
       "minDiff": 100,
       "maxDiff": 300000,
-      "shareTargetTime": 2
+      "shareTargetTime": 15
     },
     "etn":{
       "minDiff": 100,
       "maxDiff": 300000,
-      "shareTargetTime": 2
+      "shareTargetTime": 15
     },
     "bcn":{
       "minDiff": 100,
       "maxDiff": 300000,
-      "shareTargetTime": 2
+      "shareTargetTime": 15
     },
     "sumo":{
       "minDiff": 100,
       "maxDiff": 300000,
-      "shareTargetTime": 2
+      "shareTargetTime": 15
     },
     "itns":{
       "minDiff": 100,
       "maxDiff": 300000,
-      "shareTargetTime": 2
+      "shareTargetTime": 15
     }
   }
 }
