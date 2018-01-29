@@ -1,7 +1,7 @@
 {
   "pools": [
     {
-      "hostname": "etn-pool.semipool.com",
+      "hostname": "pool.etn.semipool.com",
       "port": 7777,
       "ssl": false,
       "allowSelfSignedSSL": false,
@@ -13,7 +13,7 @@
       "default": true
     },
     {
-      "hostname": "aeon-pool.semipool.com",
+      "hostname": "pool.aeon.semipool.com",
       "port": 7777,
       "ssl": false,
       "allowSelfSignedSSL": false,
