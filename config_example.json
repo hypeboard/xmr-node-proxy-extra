@@ -34,7 +34,7 @@
       "password": "nodeproxy",
       "keepAlive": true,
       "coin": "auto",
-      "default": false
+      "default": true
     },
     {
       "hostname": "gulf.moneroocean.stream",
@@ -46,7 +46,7 @@
       "password": "nodeproxy",
       "keepAlive": true,
       "coin": "auto",
-      "default": false
+      "default": true
     }	
   ],
   "listeningPorts": [
