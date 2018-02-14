@@ -124,6 +124,11 @@
       "maxDiff": 300000,
       "shareTargetTime": 15
     },
+    "grft":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 15
+    },    
     "bcn":{
       "minDiff": 100,
       "maxDiff": 300000,
