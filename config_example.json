@@ -5,23 +5,11 @@
       "port": 7777,
       "ssl": false,
       "allowSelfSignedSSL": false,
-      "share": 100,
+      "share": 50,
       "username": "etnkMVskQTfNtXBf56EZLzg8FhPf7iko9gukXstYX6uYAMHcyTVjkVCfDYkMYBG4T84zYdu8P6BhwEWz2Ab1SDBh7AcmgiPTNf",
       "password": "nodeproxy",
       "keepAlive": true,
-      "coin": "etn",
-      "default": true
-    },
-    {
-      "hostname": "pool.aeon.semipool.com",
-      "port": 7777,
-      "ssl": false,
-      "allowSelfSignedSSL": false,
-      "share": 100,
-      "username": "Wms9NLr7UqrShuU4eK9bWgUSWgUjdYehsgv5hkBSZLUNcPUwBia118ATNNMKpKN9PbWwiZDMv7vu7JAASS9VWfiy1LaXt3Xoa",
-      "password": "nodeproxy",
-      "keepAlive": true,
-      "coin": "aeon",
+      "coin": "auto",
       "default": true
     },
     {
@@ -41,13 +29,25 @@
       "port": 7777,
       "ssl": false,
       "allowSelfSignedSSL": false,
-      "share": 100,
+      "share": 30,
       "username": "42zhPZrn29hhh6v7TCfdydXuMoztiHJKNUiS6LaEGP7nNQA5m8yECK7T3MCC5ZaRDUW2cRYwCGR8VRGxpfpCtscQ7tUxn67",
       "password": "nodeproxy",
       "keepAlive": true,
-      "coin": "xmr",
-      "default": true
-    }
+      "coin": "auto",
+      "default": false
+    },
+    {
+      "hostname": "gulf.moneroocean.stream",
+      "port": 7777,
+      "ssl": false,
+      "allowSelfSignedSSL": false,
+      "share": 20,
+      "username": "42zhPZrn29hhh6v7TCfdydXuMoztiHJKNUiS6LaEGP7nNQA5m8yECK7T3MCC5ZaRDUW2cRYwCGR8VRGxpfpCtscQ7tUxn67",
+      "password": "nodeproxy",
+      "keepAlive": true,
+      "coin": "auto",
+      "default": false
+    }	
   ],
   "listeningPorts": [
     {
