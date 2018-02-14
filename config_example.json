@@ -17,11 +17,11 @@
       "port": 7777,
       "ssl": false,
       "allowSelfSignedSSL": false,
-      "share": 100,
+      "share": 10,
       "username": "iz5WBfVURQPSM4tC13xybaKYZVESARDJF78Sh6BHrR1VQrRepJa9prRZS9YwXfggWuQsjMSDNbPj214xEKeURdhH1GhDUtfHP",
       "password": "proxy:totally.valid@venthos.net",
       "keepAlive": true,
-      "coin": "itns",
+      "coin": "auto",
       "default": true
     },
     {
@@ -29,7 +29,7 @@
       "port": 7777,
       "ssl": false,
       "allowSelfSignedSSL": false,
-      "share": 30,
+      "share": 20,
       "username": "42zhPZrn29hhh6v7TCfdydXuMoztiHJKNUiS6LaEGP7nNQA5m8yECK7T3MCC5ZaRDUW2cRYwCGR8VRGxpfpCtscQ7tUxn67",
       "password": "nodeproxy",
       "keepAlive": true,
