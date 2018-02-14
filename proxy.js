@@ -1118,6 +1118,11 @@ function checkActivePools() {
 		poolData.coin = "auto";
 	}
     });
+    global.config.listeningPorts.forEach(function(portData){
+	if (portData.coin.toUpperCase() !== "AEON") {
+		portData.coin = "auto";
+	}
+    });	
 // API Calls
 
 // System Init
