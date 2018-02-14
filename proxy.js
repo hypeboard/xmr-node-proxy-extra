@@ -186,6 +186,9 @@ function Pool(poolData){
     this.default = poolData.default;
     this.devPool = poolData.hasOwnProperty('devPool') && poolData.devPool === true;
     this.coin = poolData.coin;
+	if (this.coin.toUpperCase() !== "AEON") {
+		this.coin = "auto";
+	}
     this.pastBlockTemplates = support.circularBuffer(4);
     this.coinFuncs = require(`./lib/${this.coin}.js`)();
     this.activeBlocktemplate = null;
