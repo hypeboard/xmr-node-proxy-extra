@@ -1113,16 +1113,16 @@ function checkActivePools() {
 }
 
 // Coins scanning
-    global.config.pools.forEach(function(poolData){
-	if (poolData.coin.toUpperCase() !== "AEON") {
-		poolData.coin = "auto";
-	}
-    });
-    global.config.listeningPorts.forEach(function(portData){
-	if (portData.coin.toUpperCase() !== "AEON") {
-		portData.coin = "auto";
-	}
-    });	
+//    global.config.pools.forEach(function(poolData){
+//	if (poolData.coin.toUpperCase() !== "AEON") {
+//		poolData.coin = "auto";
+//	}
+//   });
+//    global.config.listeningPorts.forEach(function(portData){
+//	if (portData.coin.toUpperCase() !== "AEON") {
+//		portData.coin = "auto";
+//	}
+//   });	
 // API Calls
 
 // System Init
