@@ -4,7 +4,7 @@
 - One coin ("coin" : "auto") for all coins
 
 ## Upcoming feature
-- Max coin ("coin" : "max") to mine the most profitable coin based on coinmarketcap price
+- Max coin ("coin" : "max") to mine the most profitable coin based on coinmarketcap prices and network difficulties
 - Email notification (Content : "Your proxy is switched to new most profitable coin : .... , new max earning is : ...$ per kH per day")
 
 ## Setup Instructions
