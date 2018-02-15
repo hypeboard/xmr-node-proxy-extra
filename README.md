@@ -1,7 +1,7 @@
 # xmr-node-proxy
 
 ## Feature
-- One coin ("coin" : "auto") for all coins
+- One coin ("coin" : "auto") for all coins. Backward comptability. (Aeon uses Cryptonight-light and must be kept like before, "coin" : "aeon")
 
 ## Upcoming feature
 - Max coin ("coin" : "max") to mine the most profitable coin based on coinmarketcap prices and network difficulties
