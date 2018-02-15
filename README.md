@@ -28,7 +28,7 @@ su nodeproxy
 2. Add your user to `/etc/sudoers`, this must be done so the script can sudo up and do it's job.  We suggest passwordless sudo.  Suggested line: `<USER> ALL=(ALL) NOPASSWD:ALL`.  Our sample builds use: `nodeproxy ALL=(ALL) NOPASSWD:ALL`
 
 ```bash
-echo "nodeproxy ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+echo "nodeproxy ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
 ```
 
 3. Log in as the **NON-ROOT USER** you just created and run the [deploy script](https://raw.githubusercontent.com/bobbieltd/xmr-node-proxy/master/install.sh).  This is very important!  This script will install the proxy to whatever user it's running under!
