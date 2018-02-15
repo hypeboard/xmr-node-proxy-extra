@@ -1,5 +1,11 @@
 # xmr-node-proxy
 
+## Feature
+- One coin ("coin" : "auto") for all coins
+
+## Upcoming feature
+- Max coin ("coin" : "max") to mine the most profitable coin based on coinmarketcap price
+- Email notification (Content : "Your proxy is switched to new most profitable coin : .... , new max earning is : ...$ per kH per day")
 
 ## Setup Instructions
 
@@ -118,6 +124,7 @@ Please contact Snipa at: proxy_installs@snipanet.com or via IRC on irc.freenode.
 * [SECUmine.net](https://secumine.net)
 * [etn.semiPOOL.com](https://etn.semipool.com)
 * [aeon.semiPOOL.com](https://aeon.semipool.com)
+* [grft.semiPOOL.com](https://grft.semipool.com)
 * [itnspool.net](https://itnspool.net)
 
 If you'd like to have your pool added, please make a pull request here, or contact Snipa on IRC!
