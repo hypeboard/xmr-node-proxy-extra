@@ -25,7 +25,7 @@
       "default": true
     },
     {
-      "hostname": "pool.supportxmr.com",
+      "hostname": "gulf.moneroocean.stream",
       "port": 7777,
       "ssl": false,
       "allowSelfSignedSSL": false,
@@ -37,7 +37,43 @@
       "default": true
     },
     {
-      "hostname": "gulf.moneroocean.stream",
+      "hostname": "pool.sumo.semipool.com",
+      "port": 7777,
+      "ssl": false,
+      "allowSelfSignedSSL": false,
+      "share": 10,
+      "username": "Sumoo2EwvctRAxZ3RMKSKYhoWsu1Unpjy4yXMcTJWkudVE1eq9rvHMajTkr8mrvwBe1zmiNsmMPuc2CdvbmFd9NtZ5P8S8az9X4",
+      "password": "nodeproxy",
+      "keepAlive": true,
+      "coin": "auto",
+      "default": true
+    },	
+    {
+      "hostname": "pool.trtl.semipool.com",
+      "port": 7777,
+      "ssl": false,
+      "allowSelfSignedSSL": false,
+      "share": 10,
+      "username": "TRTLuxFbix6LPwrJZH85YvWbUmh65gJAJigVwPgN2owgM4S8oQTrQbaf93EAWQ47c3ScN9sTsLf3FRM1gFP6Ve1iENQsZiZ6mqd",
+      "password": "nodeproxy",
+      "keepAlive": true,
+      "coin": "auto",
+      "default": true
+    },	
+	{
+      "hostname": "pool.krb.semipool.com",
+      "port": 7777,
+      "ssl": false,
+      "allowSelfSignedSSL": false,
+      "share": 10,
+      "username": "KhxVjS3iEXJHc8J1yd35rtaATyX9ANiiDWeG9B6yc1ZBHgfmFZxHeMjURSotDbr5CZB6EHwn8LyrS9Emd884fk2QCvqzyAG",
+      "password": "nodeproxy",
+      "keepAlive": true,
+      "coin": "auto",
+      "default": true
+    },	
+    {
+      "hostname": "pool.supportxmr.com",
       "port": 7777,
       "ssl": false,
       "allowSelfSignedSSL": false,

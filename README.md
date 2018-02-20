@@ -125,6 +125,9 @@ Please contact Snipa at: proxy_installs@snipanet.com or via IRC on irc.freenode.
 * [etn.semiPOOL.com](https://etn.semipool.com)
 * [aeon.semiPOOL.com](https://aeon.semipool.com)
 * [grft.semiPOOL.com](https://grft.semipool.com)
+* [sumo.semiPOOL.com](https://sumo.semipool.com)
+* [krb.semiPOOL.com](https://krb.semipool.com)
+* [trtl.semiPOOL.com](https://trtl.semipool.com)
 * [itnspool.net](https://itnspool.net)
 
 If you'd like to have your pool added, please make a pull request here, or contact Snipa on IRC!
