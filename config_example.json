@@ -47,19 +47,7 @@
       "keepAlive": true,
       "coin": "auto",
       "default": true
-    },	
-    {
-      "hostname": "pool.trtl.semipool.com",
-      "port": 7777,
-      "ssl": false,
-      "allowSelfSignedSSL": false,
-      "share": 10,
-      "username": "TRTLuxFbix6LPwrJZH85YvWbUmh65gJAJigVwPgN2owgM4S8oQTrQbaf93EAWQ47c3ScN9sTsLf3FRM1gFP6Ve1iENQsZiZ6mqd",
-      "password": "nodeproxy",
-      "keepAlive": true,
-      "coin": "auto",
-      "default": true
-    },	
+    },		
 	{
       "hostname": "pool.krb.semipool.com",
       "port": 7777,
@@ -87,7 +75,7 @@
   ],
   "listeningPorts": [
     {
-      "port": 80,
+      "port": 1111,
       "ssl": false,
       "diff": 100,
       "coin": "auto"
@@ -139,7 +127,17 @@
       "minDiff": 100,
       "maxDiff": 300000,
       "shareTargetTime": 15
-    },    
+    }, 
+    "trtl":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 15
+    },
+    "krb":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 15
+    },	
     "bcn":{
       "minDiff": 100,
       "maxDiff": 300000,
