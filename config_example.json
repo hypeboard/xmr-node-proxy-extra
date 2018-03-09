@@ -136,6 +136,21 @@
       "maxDiff": 300000,
       "shareTargetTime": 15
     },
+    "dero":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 15
+    },	
+    "cryptonight":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 15
+    },	
+    "forknote":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 15
+    },	
     "itns":{
       "minDiff": 100,
       "maxDiff": 300000,
