@@ -260,7 +260,7 @@ function Pool(poolData){
         this.sendData('login', {
             login: this.username,
             pass: this.password,
-            agent: 'xmr-node-proxy/0.0.1'
+            agent: 'xmr-node-proxy/0.1.0'
         });
         this.active = true;
         for (let worker in cluster.workers){
@@ -705,7 +705,7 @@ function handlePoolMessage(jsonData, hostname){
 
 function handleNewBlockTemplate(blockTemplate, hostname){
     let pool = activePools[hostname];
-    console.log(`Received new block template from ${pool.hostname}`);
+    console.log(`Received new block template on ${blockTemplate.height} height from ${pool.hostname}`);
     if(pool.activeBlocktemplate){
         if (pool.activeBlocktemplate.job_id === blockTemplate.job_id){
             debug.pool('No update with this job, it is an upstream dupe');
@@ -945,6 +945,7 @@ function handleMinerData(method, params, ip, portData, sendReply, pushMessage, m
                 sendReply('Unauthenticated');
                 return;
             }
+            miner.heartbeat();
             sendReply(null, {
                 status: 'KEEPALIVED'
             });
@@ -1112,17 +1113,6 @@ function checkActivePools() {
     }
 }
 
-// Coins scanning
-//    global.config.pools.forEach(function(poolData){
-//	if (poolData.coin.toUpperCase() !== "AEON") {
-//		poolData.coin = "auto";
-//	}
-//   });
-//    global.config.listeningPorts.forEach(function(portData){
-//	if (portData.coin.toUpperCase() !== "AEON") {
-//		portData.coin = "auto";
-//	}
-//   });	
 // API Calls
 
 // System Init
