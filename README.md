@@ -1,12 +1,14 @@
 # xmr-node-proxy
 
+Donations are for devs (not for myself)
+
+For algo changes update :
+- git pull (if not working, git stash then follow instructions and git pull)
+- npm update
+
 ## Feature
-- One coin ("coin" : "auto") for all coins. Backward comptability. (Aeon uses Cryptonight-light and must be kept like before, "coin" : "aeon")
-
-## Upcoming feature
-- Max coin ("coin" : "max") to mine the most profitable coin based on coinmarketcap prices and network difficulties
-- Email notification (Content : "Your proxy is switched to new most profitable coin : .... , new best earning is : ...$ per kH per day. It's recommended to sell the last old most profitable coin")
-
+- General coin ("coin" : "auto" , "coin" : "cryptonight", "coin" : "forknote")  
+ 
 ## Setup Instructions
 
 Based on a clean Ubuntu 16.04 LTS minimal install
@@ -112,16 +114,8 @@ Please contact Snipa at: proxy_installs@snipanet.com or via IRC on irc.freenode.
 
 * [XMRPool.net](https://xmrpool.net)
 * [supportXMR.com](https://supportxmr.com)
-* [pool.xmr.pt](https://pool.xmr.pt)
-* [minemonero.pro](https://minemonero.pro)
-* [XMRPool.xyz](https://xmrpool.xyz)
-* [ViaXMR.com](https://viaxmr.com)
-* [mine.MoneroPRO.com](https://mine.moneropro.com)
-* [MinerCircle.com](https://www.minercircle.com)
-* [xmr.p00ls.net](https://www.p00ls.net)
-* [MoriaXMR.com](https://moriaxmr.com)
 * [MoneroOcean.stream](https://moneroocean.stream)
-* [SECUmine.net](https://secumine.net)
+* [xmr.semiPOOL.com](https://xmr.semipool.com)
 * [etn.semiPOOL.com](https://etn.semipool.com)
 * [aeon.semiPOOL.com](https://aeon.semipool.com)
 * [grft.semiPOOL.com](https://grft.semipool.com)
