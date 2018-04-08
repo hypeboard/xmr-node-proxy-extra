@@ -1,7 +1,7 @@
 {
   "pools": [
     {
-      "hostname": "pool.etn.semipool.com",
+      "hostname": "pool.xmr.semipool.com",
       "port": 7777,
       "ssl": false,
       "allowSelfSignedSSL": false,
@@ -9,7 +9,7 @@
       "username": "etnkMVskQTfNtXBf56EZLzg8FhPf7iko9gukXstYX6uYAMHcyTVjkVCfDYkMYBG4T84zYdu8P6BhwEWz2Ab1SDBh7AcmgiPTNf",
       "password": "nodeproxy",
       "keepAlive": true,
-      "coin": "auto",
+      "coin": "cryptonightv7",
       "default": true
     },
     {
@@ -21,7 +21,7 @@
       "username": "iz5WBfVURQPSM4tC13xybaKYZVESARDJF78Sh6BHrR1VQrRepJa9prRZS9YwXfggWuQsjMSDNbPj214xEKeURdhH1GhDUtfHP",
       "password": "proxy:totally.valid@venthos.net",
       "keepAlive": true,
-      "coin": "auto",
+      "coin": "forknote",
       "default": true
     },
     {
@@ -33,7 +33,7 @@
       "username": "42zhPZrn29hhh6v7TCfdydXuMoztiHJKNUiS6LaEGP7nNQA5m8yECK7T3MCC5ZaRDUW2cRYwCGR8VRGxpfpCtscQ7tUxn67",
       "password": "nodeproxy",
       "keepAlive": true,
-      "coin": "auto",
+      "coin": "cryptonight",
       "default": true
     },
     {
@@ -49,7 +49,7 @@
       "default": true
     },		
     {
-      "hostname": "pool.supportxmr.com",
+      "hostname": "pool.trtl.semipool.com",
       "port": 7777,
       "ssl": false,
       "allowSelfSignedSSL": false,
@@ -57,7 +57,7 @@
       "username": "42zhPZrn29hhh6v7TCfdydXuMoztiHJKNUiS6LaEGP7nNQA5m8yECK7T3MCC5ZaRDUW2cRYwCGR8VRGxpfpCtscQ7tUxn67",
       "password": "nodeproxy",
       "keepAlive": true,
-      "coin": "auto",
+      "coin": "trtl",
       "default": true
     }	
   ],
@@ -66,92 +66,62 @@
       "port": 1111,
       "ssl": false,
       "diff": 100,
-      "coin": "auto"
+      "coin": "cryptonight"
     },  
     {
       "port": 2222,
       "ssl": false,
       "diff": 100,
-      "coin": "auto"
+      "coin": "cryptonightv7"
     },
     {
       "port": 4444,
       "ssl": false,
       "diff": 100,
-      "coin": "auto"
+      "coin": "forknote"
     },
     {
       "port": 6666,
       "ssl": false,
       "diff": 100,
-      "coin": "auto"
+      "coin": "trtl"
     }
   ],
   "bindAddress": "0.0.0.0",
   "developerShare": 1,
   "daemonAddress": "127.0.0.1:26968",
   "coinSettings": {
-    "auto":{
-      "minDiff": 100,
-      "maxDiff": 300000,
-      "shareTargetTime": 15
-    },  
-    "xmr":{
-      "minDiff": 100,
-      "maxDiff": 300000,
-      "shareTargetTime": 15
-    },
-    "aeon":{
-      "minDiff": 100,
-      "maxDiff": 300000,
-      "shareTargetTime": 15
-    },
-    "etn":{
-      "minDiff": 100,
-      "maxDiff": 300000,
-      "shareTargetTime": 15
-    },
-    "grft":{
-      "minDiff": 100,
-      "maxDiff": 300000,
-      "shareTargetTime": 15
-    }, 
-    "trtl":{
-      "minDiff": 100,
-      "maxDiff": 300000,
-      "shareTargetTime": 15
-    },
-    "krb":{
-      "minDiff": 100,
-      "maxDiff": 300000,
-      "shareTargetTime": 15
-    },	
-    "bcn":{
-      "minDiff": 100,
-      "maxDiff": 300000,
-      "shareTargetTime": 15
-    },
-    "sumo":{
-      "minDiff": 100,
-      "maxDiff": 300000,
-      "shareTargetTime": 15
-    },
-    "dero":{
-      "minDiff": 100,
-      "maxDiff": 300000,
-      "shareTargetTime": 15
-    },	
     "cryptonight":{
       "minDiff": 100,
       "maxDiff": 300000,
       "shareTargetTime": 15
-    },	
+    },  
+    "cryptonightv7":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 15
+    },
+    "cryptonightlight":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 15
+    },
+    "cryptonightlightv7":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 15
+    },
     "forknote":{
       "minDiff": 100,
       "maxDiff": 300000,
       "shareTargetTime": 15
-    },	
-    "itns":{
+    }, 
+    "forknotev7":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 15
+    }, 	
+    "trtl":{
       "minDiff": 100,
       "maxDiff": 300000,
       "shareTargetTime": 15
