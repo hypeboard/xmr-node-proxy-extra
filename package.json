@@ -37,6 +37,7 @@
   },
   "optionalDependencies": {
     "cryptoforknote-util": "git+https://github.com/MoneroOcean/node-cryptoforknote-util.git",
+    "multi-hashing": "git://github.com/quangvu3/node-multi-hashing.git#Nan-2.0",
     "cryptonight-hashing": "git+https://github.com/MoneroOcean/node-cryptonight-hashing.git"
   }
 }
