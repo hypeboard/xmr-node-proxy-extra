@@ -2,9 +2,7 @@
 
 Donations are for devs (not for myself)
 
-For algo changes update :
-- git pull (if not working, git stash then follow instructions and git pull)
-- npm update
+It is advisable to fresh install
 
 ## Feature
 - General coin ("coin" : "auto" , "coin" : "cryptonight", "coin" : "forknote")  
