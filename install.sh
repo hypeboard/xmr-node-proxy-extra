@@ -24,6 +24,6 @@ cd ~
 pm2 status
 sudo env PATH=$PATH:`pwd`/.nvm/versions/node/v8.9.4/bin `pwd`/.nvm/versions/node/v8.9.4/lib/node_modules/pm2/bin/pm2 startup systemd -u $CURUSER --hp `pwd`
 sudo chown -R $CURUSER. ~/.pm2
-echo "Installing pm2-logrotate in the background!"
-pm2 install pm2-logrotate &
+echo "Installing pm2-logrotate takes time!"
+pm2 install pm2-logrotate
 echo "You're setup with a shiny new proxy!  Now, go configure it and have fun."
