@@ -5,7 +5,7 @@ Donations are for devs (not for myself)
 It is advisable to fresh install
 
 ## Feature
-- General coin ("coin" : "cryptonightv7" , "coin" : "cryptonight", "coin" : "forknote", ...)  
+- General coin by POW algorithm ("coin" : "cryptonightv7" , "coin" : "cryptonight", "coin" : "forknote", ...)  
  
 ## Setup Instructions
 
