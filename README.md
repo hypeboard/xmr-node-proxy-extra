@@ -6,8 +6,8 @@ It is advisable to fresh install
 
 ## Feature
 - General coin by POW algorithm ("coin" : "cryptonightv7" , "coin" : "cryptonight", "coin" : "forknote", ...)  
-- Turtlecoin need use "coin" : "trtl"
-- Cryptonightheavy " unfinished 
+- Turtlecoin needs to be used as "coin" : "trtl"
+- Cryptonightheavy : unfinished 
  
 ## Setup Instructions
 
