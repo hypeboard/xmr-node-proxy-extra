@@ -108,7 +108,12 @@
       "minDiff": 100,
       "maxDiff": 300000,
       "shareTargetTime": 15
-    }, 	
+    },
+    "xmr":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 15
+    },    
     "trtl":{
       "minDiff": 100,
       "maxDiff": 300000,
