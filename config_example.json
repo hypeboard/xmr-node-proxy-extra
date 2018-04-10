@@ -66,6 +66,10 @@
   "bindAddress": "0.0.0.0",
   "developerShare": 1,
   "daemonAddress": "127.0.0.1:26968",
+  "accessControl": {
+    "enabled": false,
+    "controlFile": "accessControl.json"
+  },  
   "coinSettings": {
     "cryptonight":{
       "minDiff": 100,
