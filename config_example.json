@@ -13,15 +13,27 @@
       "default": true
     },
     {
+      "hostname": "pool.sumo.semipool.com",
+      "port": 5555,
+      "ssl": false,
+      "allowSelfSignedSSL": false,
+      "share": 100,
+      "username": "Sumoo2EwvctRAxZ3RMKSKYhoWsu1Unpjy4yXMcTJWkudVE1eq9rvHMajTkr8mrvwBe1zmiNsmMPuc2CdvbmFd9NtZ5P8S8az9X4",
+      "password": "nodeproxy",
+      "keepAlive": true,
+      "coin": "cryptonightv7",
+      "default": true
+    },	
+    {
       "hostname": "gulf.moneroocean.stream",
       "port": 10008,
       "ssl": false,
       "allowSelfSignedSSL": false,
-      "share": 20,
+      "share": 50,
       "username": "4Aio2FxFmciVKbu1JabGQGAvD3hEaL95DebaAq9td2UDLdSSM3fZNfWLfqjBkFKYjB2d9pAJw2F7Yh9rFZrEsCvE94277HJ",
       "password": "nodeproxy",
       "keepAlive": true,
-      "coin": "cryptonight",
+      "coin": "cryptonightv7",
       "default": true
     },
     {
@@ -29,7 +41,7 @@
       "port": 5555,
       "ssl": false,
       "allowSelfSignedSSL": false,
-      "share": 20,
+      "share": 100,
       "username": "TRTLv2UBN84GAe5Yt7zP882wxeahf5qALMFLBFtfWfacRN7PZrZaz2yXCncR6LeGzuXYuF5CFm4H3JBZw4t9vvKPQ9Yu6eUAt2T",
       "password": "nodeproxy",
       "keepAlive": true,
