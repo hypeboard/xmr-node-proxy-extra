@@ -2,7 +2,7 @@
   "pools": [
     {
       "hostname": "pool.xmr.semipool.com",
-      "port": 7777,
+      "port": 5555,
       "ssl": false,
       "allowSelfSignedSSL": false,
       "share": 50,
@@ -14,7 +14,7 @@
     },
     {
       "hostname": "pool.itnspool.net",
-      "port": 7777,
+      "port": 5555,
       "ssl": false,
       "allowSelfSignedSSL": false,
       "share": 10,
@@ -26,7 +26,7 @@
     },
     {
       "hostname": "gulf.moneroocean.stream",
-      "port": 7777,
+      "port": 10008,
       "ssl": false,
       "allowSelfSignedSSL": false,
       "share": 20,
@@ -38,7 +38,7 @@
     },		
     {
       "hostname": "pool.trtl.semipool.com",
-      "port": 7777,
+      "port": 5555,
       "ssl": false,
       "allowSelfSignedSSL": false,
       "share": 20,
