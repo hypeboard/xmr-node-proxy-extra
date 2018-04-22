@@ -77,11 +77,15 @@
   ],
   "bindAddress": "0.0.0.0",
   "developerShare": 1,
-  "daemonAddress": "127.0.0.1:26968",
+  "daemonAddress": "127.0.0.1:18081",
   "accessControl": {
     "enabled": false,
     "controlFile": "accessControl.json"
-  },  
+  },
+  "httpEnable": false,
+  "httpAddress": "127.0.0.1",
+  "httpPort": "8181",
+  "minerInactivityTime": "120",
   "coinSettings": {
     "cryptonight":{
       "minDiff": 100,

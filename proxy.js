@@ -2,6 +2,8 @@
 const cluster = require('cluster');
 const net = require('net');
 const tls = require('tls');
+const http = require('http');
+const moment = require('moment');
 const fs = require('fs');
 const async = require('async');
 const uuidV4 = require('uuid/v4');
@@ -580,7 +582,7 @@ function balanceWorkers(){
     }
 }
 
-function enumerateWorkerStats(){
+function enumerateWorkerStats() {
     let stats, global_stats = {miners: 0, hashes: 0, hashRate: 0, diff: 0};
     for (let poolID in activeWorkers){
         if (activeWorkers.hasOwnProperty(poolID)){
@@ -590,12 +592,13 @@ function enumerateWorkerStats(){
                 hashRate: 0,
                 diff: 0
             };
+            let inactivityDeadline = Math.floor((Date.now())/1000) - (global.config.minerInactivityTime ? global.config.minerInactivityTime : 120);
             for (let workerID in activeWorkers[poolID]){
                 if (activeWorkers[poolID].hasOwnProperty(workerID)) {
                     let workerData = activeWorkers[poolID][workerID];
                     if (typeof workerData !== 'undefined') {
                         try{
-                            if (workerData.lastContact < ((Math.floor((Date.now())/1000) - 120))){
+                            if (workerData.lastContact < inactivityDeadline){
                                 delete activeWorkers[poolID][workerID];
                                 continue;
                             }
@@ -798,6 +801,9 @@ function Miner(id, params, ip, pushMessage, portData, minerSocket) {
 
     this.cachedJob = null;
 
+    let pass_split = params.pass.split(":");
+    this.identifier = pass_split[0];
+
     this.minerStats = function(){
         if (this.socket.destroyed){
             delete activeMiners[this.id];
@@ -813,7 +819,9 @@ function Miner(id, params, ip, pushMessage, portData, minerSocket) {
             lastShare: this.lastShareTime,
             coin: this.coin,
             pool: this.pool,
-            id: this.id
+            id: this.id,
+            identifier: this.identifier,
+            ip: this.ip
         };
     };
 
@@ -1004,6 +1012,71 @@ function handleMinerData(method, params, ip, portData, sendReply, pushMessage, m
     }
 }
 
+function activateHTTP() {
+	var jsonServer = http.createServer((req, res) => {
+		if (req.url == "/") {
+			let totalWorkers = 0, totalHashrate = 0;
+			let tableBody = "";
+			for (var workerid in activeWorkers) {
+				let worker = activeWorkers[workerid];
+				if (worker.length == 0) continue;
+				for (var minerid in worker) {
+					let miner = worker[minerid];
+					if (miner.length == 0) continue;
+					let name = (miner.identifier.length > 0 && miner.identifier != "x") ? miner.identifier + " (" + miner.ip + ")" : miner.ip;
+					++ totalWorkers;
+					totalHashrate += miner.avgSpeed;
+					tableBody += `
+				<tr>
+					<td><TAB TO=t1>${name}</td>
+					<td><TAB TO=t2>${miner.avgSpeed}</td>
+					<td><TAB TO=t3>${miner.diff}</td>
+					<td><TAB TO=t4>${miner.shares}</td>
+					<td><TAB TO=t5>${miner.hashes}</td>
+					<td><TAB TO=t6>${moment.unix(miner.lastShare).fromNow(true)}</td>
+					<td><TAB TO=t7>${moment.unix(miner.lastContact).fromNow(true)}</td>
+				</tr>
+	`;
+				}
+			}
+			res.writeHead(200, {'Content-type':'text/html'});
+			res.write(`
+<html lang="en"><head>
+	<title>XNP Hashrate Monitor</title>
+	<meta charset="utf-8">
+</head><body>
+	<h1>XNP Hashrate Monitor</h1>
+	<h2>Workers: ${totalWorkers}, Hashrate: ${totalHashrate}</h2>
+	<table>
+		<thead>
+			<th><TAB INDENT=0  ID=t1>Name</th>
+			<th><TAB INDENT=20 ID=t2>Hashrate</th>
+			<th><TAB INDENT=30 ID=t3>Difficulty</th>
+			<th><TAB INDENT=40 ID=t4>Shares</th>
+			<th><TAB INDENT=50 ID=t5>Hashes</th>
+			<th><TAB INDENT=60 ID=t6>Share Ago</th>
+			<th><TAB INDENT=80 ID=t7>Ping Ago</th>
+		</thead>
+		<tbody>
+			${tableBody}
+		</tbody>
+	</table>
+</body></html>
+`);
+			res.end();
+		} else if(req.url.substring(0, 5) == "/json") {
+			res.writeHead(200, {'Content-type':'application/json'});
+			res.write(JSON.stringify(activeWorkers) + "\r\n");
+			res.end();
+		} else {
+			res.writeHead(404);
+			res.end();
+		}
+	});
+
+	jsonServer.listen(global.config.httpPort || "8080", global.config.httpAddress || "localhost")
+}
+
 function activatePorts() {
     /*
      Reads the current open ports, and then activates any that aren't active yet
@@ -1042,7 +1115,7 @@ function activatePorts() {
                 socket.write(sendData);
             };
             handleMinerData(jsonData.method, jsonData.params, socket.remoteAddress, portData, sendReply, pushMessage, minerSocket);
-            };
+        };
 
         function socketConn(socket) {
             socket.setKeepAlive(true);
@@ -1203,6 +1276,7 @@ if (cluster.isMaster) {
     connectPools();
     setInterval(enumerateWorkerStats, 15000);
     setInterval(balanceWorkers, 90000);
+    if(global.config.httpEnable) activateHTTP();
 } else {
     /*
     setInterval(checkAliveMiners, 30000);
