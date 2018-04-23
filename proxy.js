@@ -1024,7 +1024,6 @@ function activateHTTP() {
 				for (let minerID in activeWorkers[workerID]){
                 			if (!activeWorkers[workerID].hasOwnProperty(minerID)) continue;
 					let miner = activeWorkers[workerID][minerID];
-					if (!miner) continue;
 					if (!miner.identifier) {
 						miner.identifier = "x";
 					}					
