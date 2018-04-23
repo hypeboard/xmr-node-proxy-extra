@@ -82,7 +82,7 @@ VMs with 512Mb or less RAM will need some swap space in order to compile the C e
 
 If not running on an Ubuntu 16.04 system, please make sure your kernel is at least 3.2 or higher, as older versions will not work for this.
 
-Many smaller VMs come with ulimits set very low. We suggest looking into setting the ulimit higher. In particular, `nofile` (Number of files open) needs to be raised for high-usage instances.
+Many smaller VMs come with ulimits set very low. We suggest looking into setting the ulimit higher. In particular, `nofile` (Number of files open) needs to be raised for high-usage instances. Guide : http://posidev.com/blog/2009/06/04/set-ulimit-parameters-on-ubuntu/
 
 If your system doesn't have AES-NI, then it will throw an error and utils should be changed ....
 
