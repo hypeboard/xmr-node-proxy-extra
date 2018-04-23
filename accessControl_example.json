@@ -1,5 +1,5 @@
 {
-  "userOne_withoutFixedDiff": "passwordForUser1",
-  "userTwo_withoutFixedDiff": "passwordForUser2",
+  "userOne": "passwordOne",
+  "userTwo": "passwordTwo",
   "etc": "etc"
 }
