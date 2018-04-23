@@ -10,6 +10,7 @@ const uuidV4 = require('uuid/v4');
 const support = require('./lib/support.js')();
 global.config = require('./config.json');
 
+const PROXY_VERSION = "0.1.1";
 
 /*
  General file design/where to find things.
@@ -264,7 +265,7 @@ function Pool(poolData){
         this.sendData('login', {
             login: this.username,
             pass: this.password,
-            agent: 'xmr-node-proxy/0.1.1'
+            agent: 'xmr-node-proxy/' + PROXY_VERSION
         });
         this.active = true;
         for (let worker in cluster.workers){
@@ -1017,13 +1018,12 @@ function activateHTTP() {
 		if (req.url == "/") {
 			let totalWorkers = 0, totalHashrate = 0;
 			let tableBody = "";
-			for (var workerid in activeWorkers) {
-				let worker = activeWorkers[workerid];
-				if (worker.length == 0) continue;
-				for (var minerid in worker) {
-					let miner = worker[minerid];
-					if (miner.length == 0) continue;
-					let name = (miner.identifier.length > 0 && miner.identifier != "x") ? miner.identifier + " (" + miner.ip + ")" : miner.ip;
+    			for (let workerID in activeWorkers) {
+				if (!activeWorkers.hasOwnProperty(workerID)) continue;
+				for (let minerID in activeWorkers[workerID]){
+                			if (!activeWorkers[workerID].hasOwnProperty(minerID)) continue;
+					let miner = activeWorkers[workerID][minerID];
+					let name = (miner.identifier && miner.identifier != "x") ? miner.identifier + " (" + miner.ip + ")" : miner.ip;
 					++ totalWorkers;
 					totalHashrate += miner.avgSpeed;
 					tableBody += `
@@ -1044,10 +1044,32 @@ function activateHTTP() {
 <html lang="en"><head>
 	<title>XNP Hashrate Monitor</title>
 	<meta charset="utf-8">
+	<style>
+	  html, body {
+	    font-family: 'Saira Semi Condensed', sans-serif;
+	    font-size: 14px;
+	    text-align: center;
+	  }
+	
+	  .sorted-table {
+	    margin: auto;
+	    width: 60%;
+	    text-align: center;
+	  }
+	
+	  .sorted-table td, .sorted-table th {
+	    border-bottom: 1px solid #d9d9d9;
+	  }
+	
+	  .hover {
+	    background-color: #eeeeee;
+	    cursor: pointer;
+	  }
+	</style>
 </head><body>
 	<h1>XNP Hashrate Monitor</h1>
 	<h2>Workers: ${totalWorkers}, Hashrate: ${totalHashrate}</h2>
-	<table>
+	<table class="sorted-table">
 		<thead>
 			<th><TAB INDENT=0  ID=t1>Name</th>
 			<th><TAB INDENT=60 ID=t2>Hashrate</th>
@@ -1061,6 +1083,60 @@ function activateHTTP() {
 			${tableBody}
 		</tbody>
 	</table>
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script>
+	    $('table.sorted-table thead th').on("mouseover", function() {
+	      var el = $(this),
+	      pos = el.index();
+	      el.addClass("hover");
+	      $('table.sorted-table > tbody > tr > td').filter(":nth-child(" + (pos+1) + ")").addClass("hover");
+	    }).on("mouseout", function() {
+	      $("td, th").removeClass("hover");
+	    });
+	
+	    var thIndex = 0, thInc = 1, curThIndex = null;
+	
+	    $(function() {
+	      $('table.sorted-table thead th').click(function() {
+	        thIndex = $(this).index();
+	        sorting = [];
+	        tbodyHtml = null;
+	        $('table.sorted-table > tbody > tr').each(function() {
+	          var str = $(this).children('td').eq(thIndex).html();
+	          var re1 = /^<.+>(\\d+)<\\/.+>$/;
+	          var m;
+	          if (m = re1.exec(str)) {
+	            var pad = "000000000000";
+	            str = (pad + Number(m[1])).slice(-pad.length);
+	          }
+	          sorting.push(str + ', ' + $(this).index());
+	        });
+
+	        if (thIndex != curThIndex || thInc == 1) {
+	          sorting = sorting.sort();
+        	} else {
+	          sorting = sorting.sort(function(a, b){return b.localeCompare(a)});
+	        }
+	
+	        if (thIndex == curThIndex) {
+	          thInc = 1 - thInc;
+	        } else {
+	          thInc = 0;
+	        }
+	        
+	        curThIndex = thIndex;
+	        sortIt();
+	      });
+	    })
+
+	    function sortIt() {
+	      for (var sortingIndex = 0; sortingIndex < sorting.length; sortingIndex++) {
+	        rowId = parseInt(sorting[sortingIndex].split(', ')[1]);
+	        tbodyHtml = tbodyHtml + $('table.sorted-table > tbody > tr').eq(rowId)[0].outerHTML;
+	      }
+	      $('table.sorted-table > tbody').html(tbodyHtml);
+	    }
+	</script>
 </body></html>
 `);
 			res.end();
@@ -1074,7 +1150,7 @@ function activateHTTP() {
 		}
 	});
 
-	jsonServer.listen(global.config.httpPort || "8080", global.config.httpAddress || "localhost")
+	jsonServer.listen(global.config.httpPort || "8181", global.config.httpAddress || "localhost")
 }
 
 function activatePorts() {
@@ -1242,6 +1318,7 @@ function checkActivePools() {
 // System Init
 
 if (cluster.isMaster) {
+    console.log("Xmr-Node-Proxy (XNP) v" + PROXY_VERSION);
     let numWorkers;
     try {
         let argv = require('minimist')(process.argv.slice(2));
@@ -1276,7 +1353,10 @@ if (cluster.isMaster) {
     connectPools();
     setInterval(enumerateWorkerStats, 15000);
     setInterval(balanceWorkers, 90000);
-    if(global.config.httpEnable) activateHTTP();
+    if (global.config.httpEnable) { 
+        console.log("Activating Web API server on " + (global.config.httpAddress || "localhost") + ":" + (global.config.httpPort || "8181"));
+        activateHTTP();
+    }
 } else {
     /*
     setInterval(checkAliveMiners, 30000);
