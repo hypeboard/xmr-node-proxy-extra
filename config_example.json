@@ -91,7 +91,7 @@
       "minDiff": 100,
       "maxDiff": 300000,
       "shareTargetTime": 15
-    },  
+    },
     "cryptonightv7":{
       "minDiff": 100,
       "maxDiff": 300000,
