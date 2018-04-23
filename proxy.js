@@ -1024,10 +1024,10 @@ function activateHTTP() {
 				for (let minerID in activeWorkers[workerID]){
                 			if (!activeWorkers[workerID].hasOwnProperty(minerID)) continue;
 					let miner = activeWorkers[workerID][minerID];
-					console.log("Debugging :"+miner.hasOwnProperty(identifier));
-					if (!miner.hasOwnProperty(identifier)) {
-						miner.identifier = "x";
-					}
+//					console.log("Debugging :"+typeof(miner)+miner.hasOwnProperty(identifier));
+//					if (!miner.hasOwnProperty(identifier)) {
+//						miner.identifier = "x";
+//					}
 					let name = (miner.identifier && miner.identifier != "x") ? miner.identifier + " (" + miner.ip + ")" : miner.ip;
 					++ totalWorkers;
 					totalHashrate += miner.avgSpeed;
