@@ -2,12 +2,12 @@
 
 Donations are for devs (not for myself). Based on MoneroOcean and Snipa xmr-node-proxy.
 
-It is advisable to fresh install. For http access (http://yourIP:8181), it's view-only, you should change accessControl.json if you don't want others to access it.
+It is advisable to fresh install. For http access, it's view-only, you should change accessControl.json if you don't want others to access it.
 
 ## Feature
 - General coin by POW algorithm ("coin" : "cryptonightv7" , "coin" : "cryptonight", "coin" : "forknote", ...)  
 - Special cases : Turtlecoin needs to be used as "coin" : "trtl"
-- Http access (http://yourIP:8181 or http://yourIP:8181/json)
+- Http access (http://yourIP:8181)
 
 ## HTTP monitoring by browser
 - In config.json
