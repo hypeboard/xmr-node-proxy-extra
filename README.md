@@ -10,7 +10,8 @@ It is advisable to fresh install. For http access, it's view-only, you should ch
  
 ## Setup Instructions
 
-Based on a clean Ubuntu 16.04 LTS minimal install
+Based on a clean Ubuntu 16.04 LTS minimal install.
+Very useful and thoroughful guide to setup xmr-node-proxy on free tier Amazon AWS from MO : https://moneroocean.blogspot.com/2017/10/setup-of-xmr-node-proxy-on-free-tier.html
 
 ## Deployment via Installer
 
