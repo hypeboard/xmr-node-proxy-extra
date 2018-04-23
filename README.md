@@ -2,13 +2,21 @@
 
 Donations are for devs (not for myself). Based on MoneroOcean and Snipa xmr-node-proxy.
 
-It is advisable to fresh install. For http access (http://yourIP:8181/json or lynx http://yourIP:8181), it's view-only, you should change accessControl.json if you don't want others to access it.
+It is advisable to fresh install. For http access (http://yourIP:8181/json or http://yourIP:8181 or lynx http://yourIP:8181), it's view-only, you should change accessControl.json if you don't want others to access it.
 
 ## Feature
 - General coin by POW algorithm ("coin" : "cryptonightv7" , "coin" : "cryptonight", "coin" : "forknote", ...)  
 - Special cases : Turtlecoin needs to be used as "coin" : "trtl"
-- Http access (http://yourIP:8181/json or lynx http://yourIP:8181)
- 
+- Http access (http://yourIP:8181 or http://yourIP:8181/json)
+
+## HTTP Example
+- In config.json
+  "httpEnable": true,
+  "httpAddress": "0.0.0.0",
+  "httpPort": "8181",
+- Our IP address is 11.22.33.44
+- Monitoring your rig by browser on any devices : http://11.22.33.44:8181 (replacing 11.22.33.44 by your public Internet address)
+  
 ## Setup Instructions
 
 Based on a clean Ubuntu 16.04 LTS minimal install.
