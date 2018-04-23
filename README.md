@@ -2,7 +2,7 @@
 
 Donations are for devs (not for myself). Based on MoneroOcean and Snipa xmr-node-proxy.
 
-It is advisable to fresh install
+It is advisable to fresh install. For http access, it's view-only, you should change accessControl.json if you don't want others to access it.
 
 ## Feature
 - General coin by POW algorithm ("coin" : "cryptonightv7" , "coin" : "cryptonight", "coin" : "forknote", ...)  
