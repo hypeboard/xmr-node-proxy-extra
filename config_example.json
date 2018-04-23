@@ -83,7 +83,7 @@
     "controlFile": "accessControl.json"
   },
   "httpEnable": false,
-  "httpAddress": "127.0.0.1",
+  "httpAddress": "0.0.0.0",
   "httpPort": "8181",
   "minerInactivityTime": "120",
   "coinSettings": {
