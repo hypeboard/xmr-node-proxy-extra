@@ -1022,8 +1022,9 @@ function activateHTTP() {
     			for (let workerID in activeWorkers) {
 				if (!activeWorkers.hasOwnProperty(workerID)) continue;
 				for (let minerID in activeWorkers[workerID]){
-                			if (!activeWorkers[workerID].hasOwnProperty(minerID)) continue;
+                	if (!activeWorkers[workerID].hasOwnProperty(minerID)) continue;
 					let miner = activeWorkers[workerID][minerID];
+					if (!miner) continue;
 //					console.log("Debugging :"+typeof(miner)+miner.hasOwnProperty(identifier));
 					if (!miner.hasOwnProperty(identifier)) {
 						miner.identifier = "x";
