@@ -85,6 +85,7 @@
   "httpEnable": false,
   "httpAddress": "0.0.0.0",
   "httpPort": "8181",
+  "addressWorkerID": false,
   "minerInactivityTime": "120",
   "coinSettings": {
     "cryptonight":{

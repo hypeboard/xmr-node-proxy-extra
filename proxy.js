@@ -921,6 +921,9 @@ function handleMinerData(method, params, ip, portData, sendReply, pushMessage, m
                 sendReply(miner.error);
                 return;
             }
+			if (global.config.addressWorkerID) {
+				miner.identifier = miner.user;
+			}
             process.send({type: 'newMiner', data: miner.port});
             activeMiners[minerId] = miner;
             sendReply(null, {
@@ -1025,7 +1028,6 @@ function activateHTTP() {
                 	if (!activeWorkers[workerID].hasOwnProperty(minerID)) continue;
 					let miner = activeWorkers[workerID][minerID];
 					if (!miner) continue;
-//					console.log("Debugging :"+typeof(miner)+miner.hasOwnProperty(identifier));
 					if (!miner.identifier) {
 						miner.identifier = "x";
 					}
