@@ -9,12 +9,12 @@ It is advisable to fresh install. For http access (http://yourIP:8181/json or ht
 - Special cases : Turtlecoin needs to be used as "coin" : "trtl"
 - Http access (http://yourIP:8181 or http://yourIP:8181/json)
 
-## HTTP Example
+## HTTP monitoring by browser
 - In config.json
   "httpEnable": true,
   "httpAddress": "0.0.0.0",
   "httpPort": "8181",
-- Our IP address is 11.22.33.44
+- Your proxy IP address for example is 11.22.33.44
 - Monitoring your rig by browser on any devices : http://11.22.33.44:8181 (replacing 11.22.33.44 by your public Internet address)
 ![alt text](https://raw.githubusercontent.com/bobbieltd/xmr-node-proxy/master/xnpexample.png)
 
