@@ -1,6 +1,6 @@
 # xmr-node-proxy
 
-Donations are for devs (not for myself)
+Donations are for devs (not for myself). Based on MoneroOcean and Snipa xmr-node-proxy.
 
 It is advisable to fresh install
 
