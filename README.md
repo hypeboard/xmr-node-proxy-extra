@@ -15,7 +15,7 @@ It is advisable to fresh install. For http access (http://yourIP:8181/json or ht
   "httpAddress": "0.0.0.0",
   "httpPort": "8181",
 - Your proxy IP address for example is 11.22.33.44
-- Monitoring your rig by browser on any devices : http://11.22.33.44:8181 (replacing 11.22.33.44 by your public Internet address)
+- Monitoring your rig by browser on any devices : http://11.22.33.44:8181 (replacing 11.22.33.44 by your proxy's public Internet address)
 ![alt text](https://raw.githubusercontent.com/bobbieltd/xmr-node-proxy/master/xnpexample.png)
 
 ## Setup Instructions
