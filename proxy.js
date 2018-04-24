@@ -1024,9 +1024,7 @@ function activateHTTP() {
 				for (let minerID in activeWorkers[workerID]){
                 			if (!activeWorkers[workerID].hasOwnProperty(minerID)) continue;
 					let miner = activeWorkers[workerID][minerID];
-					if (!miner.identifier) {
-						miner.identifier = "x";
-					}					
+					if (!miner) continue;	
 					let name = (miner.identifier && miner.identifier != "x") ? miner.identifier + " (" + miner.ip + ")" : miner.ip;
 					++ totalWorkers;
 					totalHashrate += miner.avgSpeed;
