@@ -1027,10 +1027,7 @@ function activateHTTP() {
 				for (let minerID in activeWorkers[workerID]){
                 	if (!activeWorkers[workerID].hasOwnProperty(minerID)) continue;
 					let miner = activeWorkers[workerID][minerID];
-					if (!miner) continue;
-					if (!miner.identifier) {
-						miner.identifier = "x";
-					}
+					if (typeof(miner) === 'undefined' || !miner) continue;
 					let name = (miner.identifier && miner.identifier != "x") ? miner.identifier + " (" + miner.ip + ")" : miner.ip;
 					++ totalWorkers;
 					totalHashrate += miner.avgSpeed;
@@ -1053,7 +1050,7 @@ function activateHTTP() {
 <html lang="en"><head>
 	<title>XNP Hashrate Monitor</title>
 	<meta charset="utf-8">
-	<meta http-equiv="refresh" content="15">
+	<meta http-equiv="refresh" content="30">
 	<style>
 	  html, body {
 	    font-family: 'Saira Semi Condensed', sans-serif;
