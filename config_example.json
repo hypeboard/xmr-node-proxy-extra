@@ -136,7 +136,12 @@
     "trtl":{
       "minDiff": 100,
       "maxDiff": 300000,
+      "shareTargetTime": 10
+    },
+    "ipbc":{
+      "minDiff": 100,
+      "maxDiff": 300000,
       "shareTargetTime": 15
-    }
+    }	
   }
 }
