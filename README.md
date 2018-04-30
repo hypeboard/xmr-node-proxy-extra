@@ -6,7 +6,7 @@ It is advisable to fresh install. For http access, it's view-only, you should ch
 
 ## Feature
 - General coin by POW algorithm ("coin" : "cryptonightv7" , "coin" : "cryptonight", "coin" : "forknote", ...)  
-- Special cases : Turtlecoin needs to be used as "coin" : "trtl"
+- Special cases : Turtlecoin --> "coin" : "trtl", IPBC --> "coin" : "ipbc"
 - Http access (http://yourIP:8181)
 
 ## HTTP monitoring by browser
