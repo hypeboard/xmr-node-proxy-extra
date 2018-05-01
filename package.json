@@ -37,9 +37,9 @@
   },
   "optionalDependencies": {
     "semipool-ipbc-util": "git+https://github.com/bobbieltd/node-cryptoforknote-util.git#ipbc",
-    "cryptoforknote-util": "git+https://github.com/MoneroOcean/node-cryptoforknote-util.git",
-    "cryptonote-util": "git://github.com/turtlecoin/node-cryptonote-util.git",
-    "multi-hashing": "git://github.com/quangvu3/node-multi-hashing.git#Nan-2.0",
+    "semipool-trtl-util": "git+https://github.com/bobbieltd/node-cryptoforknote-util.git#trtl",
+    "cryptoforknote-util": "git+https://github.com/bobbieltd/node-cryptoforknote-util.git",
+    "semipool-heavy-hashing": "git+https://github.com/bobbieltd/node-cryptonight-hashing.git#heavy",	
     "cryptonight-hashing": "git+https://github.com/bobbieltd/node-cryptonight-hashing.git"
   }
 }
