@@ -8,6 +8,7 @@ It is advisable to fresh install. For http access, it's view-only, you should ch
 - General coin by POW algorithm ("coin" : "cryptonightv7" , "coin" : "cryptonight", "coin" : "forknote", ...)  
 - Special cases : Turtlecoin --> "coin" : "trtl", IPBC --> "coin" : "ipbc"
 - Http access (http://yourIP:8181)
+- Failover pools
 
 ## HTTP monitoring by browser
 - In config.json
@@ -17,6 +18,18 @@ It is advisable to fresh install. For http access, it's view-only, you should ch
 - Your proxy IP address for example is 11.22.33.44
 - Monitoring your rig by browser on any devices : http://11.22.33.44:8181 (replacing 11.22.33.44 by your proxy's public Internet address)
 ![alt text](https://raw.githubusercontent.com/bobbieltd/xmr-node-proxy/master/xnpexample.png)
+
+## Balancing with backup pools
+1. Specify at least one main pool with non zero share and "default: true". Sum of all non zero pool shares should be equal to 100 (percent).
+
+2. There should be one pool with "default: true" (the last one will override previous ones with "default: true"). Default pool means pool that is used
+for all initial miner connections via proxy.
+
+3. You can use pools with zero share as backup pools. They will be only used if all non zero share pools became down.
+
+4. You should select pool port with difficulty that is close to hashrate of all of your miners multiplied by 10.
+
+5. Proxy ports should have difficulty close to your individual miner hashrate multiplied by 10.
 
 ## Setup Instructions
 
