@@ -9,6 +9,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y install git python-virtualenv pyt
 cd ~
 echo "We try to remove old proxy if it exists to get fresh install. Any not found errors are normal. "
 pm2 stop proxy && pm2 delete proxy
+cp ~/xmr-node-proxy/config.json ~/configold.json
 sudo rm -rf ~/xmr-node-proxy
 git clone https://github.com/bobbieltd/xmr-node-proxy
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
@@ -28,4 +29,4 @@ sudo chown -R $CURUSER. ~/.pm2
 echo "Installing pm2-logrotate takes time!"
 source ~/.bashrc
 pm2 install pm2-logrotate
-echo "You're setup with a shiny new proxy!  Now, go configure it and have fun."
+echo "You're setup with a shiny new proxy!  Now, go configure it and have fun. If you have old removed proxy, your old config could be incompatible and saved to home directory as configold.json"
