@@ -10,7 +10,7 @@ const uuidV4 = require('uuid/v4');
 const support = require('./lib/support.js')();
 global.config = require('./config.json');
 
-const PROXY_VERSION = "0.1.2";
+const PROXY_VERSION = "0.1.3";
 
 /*
  General file design/where to find things.
@@ -227,6 +227,7 @@ function Pool(poolData){
 	            let socket = tls.connect(port, hostname, {rejectUnauthorized: allowSelfSignedSSL});
 		    socket.on('connect', ()=>{ return callback(socket); });
 		    socket.on('error', (err)=>{
+					socket.destroy();
 	                setTimeout(connect2, 10*1000, ssl, port, hostname, allowSelfSignedSSL, callback);
 	                console.warn(`${global.threadName}Socket error from ${hostname} ${err}`);
 	            });
@@ -234,6 +235,7 @@ function Pool(poolData){
 	            let socket = net.connect(port, hostname);
 		    socket.on('connect', ()=>{ return callback(socket); });
 		    socket.on('error', (err)=>{
+					socket.destroy();
 	                setTimeout(connect2, 10*1000, ssl, port, hostname, allowSelfSignedSSL, callback);
 	                console.warn(`${global.threadName}Socket error from ${hostname} ${err}`);
 	            });
