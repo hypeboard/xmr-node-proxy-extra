@@ -806,7 +806,8 @@ function Miner(id, params, ip, pushMessage, portData, minerSocket) {
         this.error = "Too many options in the login field";
         this.valid_miner = false;
     }
-
+	this.fixed_diff = true;
+    this.difficulty = portData.diff;
     if (activePools[this.pool].activeBlocktemplate === null){
         this.error = "No active block template";
         this.valid_miner = false;
