@@ -66,10 +66,8 @@ function masterMessageHandler(worker, message, handle) {
                 });
                 for (let hostname in activePools){
                     if (activePools.hasOwnProperty(hostname)){
+                        if (!is_active_pool(hostname)) continue;
                         let pool = activePools[hostname];
-                        if (!pool.active || pool.activeBlocktemplate === null){
-                            continue;
-                        }
                         worker.send({
                             host: hostname,
                             type: 'newBlockTemplate',
@@ -205,50 +203,47 @@ function Pool(poolData){
         this.allowSelfSignedSSL = !poolData.allowSelfSignedSSL;
     }
 
+    setInterval(function(pool) {
+        if (pool.keepAlive && is_active_pool(pool.hostname)) pool.sendData('keepalived');
+    }, 30000, this);
+
     this.connect = function(){
         for (let worker in cluster.workers){
             if (cluster.workers.hasOwnProperty(worker)){
                 cluster.workers[worker].send({type: 'disablePool', pool: this.hostname});
             }
         }
-        try {
-            if (this.socket !== null){
-                this.socket.end();
-                this.socket.destroy();
-            }
-        } catch (e) {
-            console.log("Had issues murdering the old socket.  Om nom: " + e)
-        }
-        this.socket = null;
         this.active = false;
 
-	function connect2(ssl, port, hostname, allowSelfSignedSSL, callback) {
+	function connect2(ssl, port, hostname, allowSelfSignedSSL) {
+                try {
+                    if (activePools[hostname].socket !== null){
+                        activePools[hostname].socket.end();
+                        activePools[hostname].socket.destroy();
+                    }
+                } catch (e) {
+                    console.warn(global.threadName + "Had issues murdering the old socket. Om nom: " + e)
+                }
+                activePools[hostname].socket = null;
+
 	        if (ssl){
-	            let socket = tls.connect(port, hostname, {rejectUnauthorized: allowSelfSignedSSL});
-		    socket.on('connect', ()=>{ return callback(socket); });
-		    socket.on('error', (err)=>{
-					socket.destroy();
-	                setTimeout(connect2, 10*1000, ssl, port, hostname, allowSelfSignedSSL, callback);
-	                console.warn(`${global.threadName}Socket error from ${hostname} ${err}`);
+	            activePools[hostname].socket = tls.connect(port, hostname, {rejectUnauthorized: allowSelfSignedSSL})
+		    .on('connect', ()=>{ poolSocket(hostname); })
+		    .on('error', (err)=>{
+	                setTimeout(connect2, 30*1000, ssl, port, hostname, allowSelfSignedSSL);
+	                console.warn(`${global.threadName}SSL pool socket connect error from ${hostname}: ${err}`);
 	            });
 	        } else {
-	            let socket = net.connect(port, hostname);
-		    socket.on('connect', ()=>{ return callback(socket); });
-		    socket.on('error', (err)=>{
-					socket.destroy();
-	                setTimeout(connect2, 10*1000, ssl, port, hostname, allowSelfSignedSSL, callback);
-	                console.warn(`${global.threadName}Socket error from ${hostname} ${err}`);
+	            activePools[hostname].socket = net.connect(port, hostname)
+		    .on('connect', ()=>{ poolSocket(hostname); })
+		    .on('error', (err)=>{
+	                setTimeout(connect2, 30*1000, ssl, port, hostname, allowSelfSignedSSL);
+	                console.warn(`${global.threadName}Plain pool socket connect error from ${hostname}: ${err}`);
 	            });
 	        }
 	}
 
-	let hostname = this.hostname;
-	connect2(this.ssl, this.port, this.hostname, this.allowSelfSignedSSL, function(socket) { poolSocket(hostname, socket); });
-    };
-    this.heartbeat = function(){
-        if (this.keepAlive){
-            this.sendData('keepalived');
-        }
+	connect2(this.ssl, this.port, this.hostname, this.allowSelfSignedSSL);
     };
     this.sendData = function (method, params) {
         if (typeof params === 'undefined'){
@@ -651,9 +646,9 @@ function enumerateWorkerStats() {
     console.log(`The proxy currently has ${global_stats.miners} miners connected at ${global_stats.hashRate} h/s${pool_hs} with an average diff of ${Math.floor(global_stats.diff/global_stats.miners)}`);
 }
 
-function poolSocket(hostname, socket){
+function poolSocket(hostname){
     let pool = activePools[hostname];
-    pool.socket = socket;
+    let socket = pool.socket;
     let dataBuffer = '';
     socket.on('data', (d) => {
         dataBuffer += d;
@@ -681,7 +676,7 @@ function poolSocket(hostname, socket){
                         }
                     }
 
-                    console.warn(`${global.threadName}Socket error from ${pool.hostname} Message: ${message}`);
+                    console.warn(`${global.threadName}Pool wrong reply error from ${pool.hostname}: ${message}`);
                     socket.destroy();
 
                     break;
@@ -692,16 +687,15 @@ function poolSocket(hostname, socket){
         }
     }).on('error', (err) => {
         activePools[pool.hostname].connect();
-        console.warn(`${global.threadName}Socket error from ${pool.hostname} ${err}`);
+        console.warn(`${global.threadName}Pool socket error from ${pool.hostname}: ${err}`);
     }).on('close', () => {
         activePools[pool.hostname].connect();
-        console.warn(`${global.threadName}Socket closed from ${pool.hostname}`);
+        console.warn(`${global.threadName}Pool socket closed from ${pool.hostname}`);
     });
     socket.setKeepAlive(true);
     socket.setEncoding('utf8');
-    console.log(`${global.threadName}connected to pool: ${pool.hostname}`);
+    console.log(`${global.threadName}Connected to pool: ${pool.hostname}`);
     pool.login();
-    setInterval(pool.heartbeat, 30000);
 }
 
 function handlePoolMessage(jsonData, hostname){
@@ -717,7 +711,7 @@ function handlePoolMessage(jsonData, hostname){
             if (jsonData.error.message === 'Unauthenticated'){
                 activePools[hostname].connect();
             }
-            return console.error(`Error response from pool ${pool.hostname}: ${JSON.stringify(jsonData.error)}`);
+            return console.error(`${global.threadName}Error response from pool ${pool.hostname}: ${JSON.stringify(jsonData.error)}`);
         }
         let sendLog = pool.sendLog[jsonData.id];
         switch(sendLog.method){
@@ -759,7 +753,7 @@ function handleNewBlockTemplate(blockTemplate, hostname){
 }
 
 function is_active_pool(hostname) {
-    return activePools[hostname].active && activePools[hostname].activeBlocktemplate !== null;
+    return activePools[hostname].socket && activePools[hostname].active && activePools[hostname].activeBlocktemplate !== null;
 }
 
 // Miner Definition
@@ -959,7 +953,7 @@ function handleMinerData(method, params, ip, portData, sendReply, pushMessage, m
             let minerId = uuidV4();
             miner = new Miner(minerId, params, ip, pushMessage, portData, minerSocket);
             if (!miner.valid_miner) {
-                console.log("Invalid miner, disconnecting due to: " + miner.error);
+                console.warn(global.threadName + "Invalid miner, disconnecting due to: " + miner.error);
                 sendReply(miner.error);
                 return;
             }
@@ -1215,15 +1209,15 @@ function activatePorts() {
         }
         let handleMessage = function (socket, jsonData, pushMessage, minerSocket) {
             if (!jsonData.id) {
-                console.warn('Miner RPC request missing RPC id');
+                console.warn(global.threadName + 'Miner RPC request missing RPC id');
                 return;
             }
             else if (!jsonData.method) {
-                console.warn('Miner RPC request missing RPC method');
+                console.warn(global.threadName + 'Miner RPC request missing RPC method');
                 return;
             }
             else if (!jsonData.params) {
-                console.warn('Miner RPC request missing RPC params');
+                console.warn(global.threadName + 'Miner RPC request missing RPC params');
                 return;
             }
 
@@ -1304,7 +1298,7 @@ function activatePorts() {
                 }
             }).on('error', function (err) {
                 if (err.code !== 'ECONNRESET') {
-                    console.warn(global.threadName + "Socket Error from " + socket.remoteAddress + " " + err);
+                    console.warn(global.threadName + "Miner socket error from " + socket.remoteAddress + ": " + err);
                 }
                 socket.end();
                 socket.destroy();
@@ -1318,10 +1312,11 @@ function activatePorts() {
         }
 
         if ('ssl' in portData && portData.ssl === true) {
-            tls.createServer({
+            let server = tls.createServer({
                 key: fs.readFileSync('cert.key'),
                 cert: fs.readFileSync('cert.pem')
-            }, socketConn).listen(portData.port, global.config.bindAddress, function (error) {
+            }, socketConn);
+	    server.listen(portData.port, global.config.bindAddress, function (error) {
                 if (error) {
                     console.error(global.threadName + "Unable to start server on: " + portData.port + " Message: " + error);
                     return;
@@ -1329,14 +1324,21 @@ function activatePorts() {
                 activePorts.push(portData.port);
                 console.log(global.threadName + "Started server on port: " + portData.port);
             });
+            server.on('error', function (error) {
+                console.error(global.threadName + "Can't bind server to " + portData.port + " SSL port!");
+            });
         } else {
-            net.createServer(socketConn).listen(portData.port, global.config.bindAddress, function (error) {
+            let server = net.createServer(socketConn);
+	    server.listen(portData.port, global.config.bindAddress, function (error) {
                 if (error) {
                     console.error(global.threadName + "Unable to start server on: " + portData.port + " Message: " + error);
                     return;
                 }
                 activePorts.push(portData.port);
                 console.log(global.threadName + "Started server on port: " + portData.port);
+            });
+            server.on('error', function (error) {
+                console.error(global.threadName + "Can't bind server to " + portData.port + " port!");
             });
         }
     });
@@ -1378,10 +1380,10 @@ if (cluster.isMaster) {
             numWorkers = require('os').cpus().length;
         }
     } catch (err) {
-        console.error(`Unable to set the number of workers via arguments.  Make sure to run npm install!`);
+        console.error(`${global.threadName}Unable to set the number of workers via arguments.  Make sure to run npm install!`);
         numWorkers = require('os').cpus().length;
     }
-    global.threadName = 'Master ';
+    global.threadName = '[MASTER] ';
     console.log('Cluster master setting up ' + numWorkers + ' workers...');
     cluster.on('message', masterMessageHandler);
     for (let i = 0; i < numWorkers; i++) {
@@ -1395,7 +1397,7 @@ if (cluster.isMaster) {
     });
 
     cluster.on('exit', function (worker, code, signal) {
-        console.log('Worker ' + worker.process.pid + ' died with code: ' + code + ', and signal: ' + signal);
+        console.error('Worker ' + worker.process.pid + ' died with code: ' + code + ', and signal: ' + signal);
         console.log('Starting a new worker');
         worker = cluster.fork();
         worker.on('message', slaveMessageHandler);
