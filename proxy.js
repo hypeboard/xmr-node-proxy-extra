@@ -1069,8 +1069,8 @@ function activateHTTP() {
 					let name = (miner.identifier && miner.identifier != "x") ? miner.identifier + " (" + miner.ip + ")" : miner.ip;
 					++ totalWorkers;
 					totalHashrate += miner.avgSpeed;
-					if (!poolHashRate[miner.pool]) poolHashRate[miner.pool] = 0;
-					poolHashRate[miner.pool] += miner.avgSpeed;
+					if (!poolHashrate[miner.pool]) poolHashrate[miner.pool] = 0;
+					poolHashrate[miner.pool] += miner.avgSpeed;
 					tableBody += `
 					<tr>
 						<td><TAB TO=t1>${name}</td>
