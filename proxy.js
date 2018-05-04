@@ -1074,6 +1074,7 @@ function activateHTTP() {
 					<td><TAB TO=t6>${moment.unix(miner.lastShare).fromNow(true)}</td>
 					<td><TAB TO=t7>${moment.unix(miner.lastContact).fromNow(true)}</td>
 					<td><TAB TO=t8>${moment(miner.connectTime).fromNow(true)}</td>
+					<td><TAB TO=t9>${miner.pool}</td>
 				</tr>
 	`;
 				}
@@ -1119,6 +1120,7 @@ function activateHTTP() {
 			<th><TAB INDENT=140 ID=t6>Share Ago</th>
 			<th><TAB INDENT=180 ID=t7>Ping Ago</th>
 			<th><TAB INDENT=220 ID=t8>Connected Ago</th>
+			<th><TAB INDENT=260 ID=t9>Pool</th>
 		</thead>
 		<tbody>
 			${tableBody}
