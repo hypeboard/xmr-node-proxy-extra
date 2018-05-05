@@ -65,7 +65,7 @@ echo "nodeproxy ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
 3. Log in as the **NON-ROOT USER** you just created and run the [deploy script](https://raw.githubusercontent.com/bobbieltd/xmr-node-proxy/master/install.sh).  This is very important!  This script will install the proxy to whatever user it's running under!
 
 ```bash
-curl -L https://github.com/ariadarkkkis/xmr-node-proxy/blob/master/install.sh | bash
+curl -L https://raw.githubusercontent.com/ariadarkkkis/xmr-node-proxy/master/install.sh | bash
 ```
 
 3. Once it's complete, copy `example_config.json` to `config.json` and edit as desired.
