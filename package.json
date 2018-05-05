@@ -38,7 +38,7 @@
   "optionalDependencies": {
     "semipool-ipbc-util": "git+https://github.com/bobbieltd/node-cryptoforknote-util.git#ipbc",
     "semipool-trtl-util": "git+https://github.com/bobbieltd/node-cryptoforknote-util.git#trtl",
-    "cryptoforknote-util": "git+https://github.com/bobbieltd/node-cryptoforknote-util.git",
+    "cryptoforknote-util": "git+https://github.com/masari-project/node-cryptonote-util.git",
     "semipool-heavy-hashing": "git+https://github.com/bobbieltd/node-cryptonight-hashing.git#heavy",	
     "cryptonight-hashing": "git+https://github.com/bobbieltd/node-cryptonight-hashing.git"
   }
