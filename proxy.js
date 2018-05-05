@@ -1091,7 +1091,7 @@ function activateHTTP() {
 				tablePool += `
 				<h2> ${poolName} : ${poolHashrate[poolName]} H/S or ${poolPercentage} %</h2>
 				`;
-			}			
+			}	
 			res.writeHead(200, {'Content-type':'text/html'});
 			res.write(`
 <html lang="en"><head>
