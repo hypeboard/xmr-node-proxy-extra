@@ -11,7 +11,7 @@ echo "We try to remove old proxy if it exists to get fresh install. Any not foun
 pm2 stop proxy && pm2 delete proxy
 cp ~/xmr-node-proxy/config.json ~/configold.json
 sudo rm -rf ~/xmr-node-proxy
-git clone https://github.com/bobbieltd/xmr-node-proxy
+git clone https://github.com/ariadarkkkis/xmr-node-proxy
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
 source ~/.nvm/nvm.sh
 nvm install v8.9.4
