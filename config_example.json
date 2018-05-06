@@ -13,18 +13,6 @@
       "default": true
     },
     {
-      "hostname": "pool.sumo.semipool.com",
-      "port": 5555,
-      "ssl": false,
-      "allowSelfSignedSSL": false,
-      "share": 100,
-      "username": "Sumoo2EwvctRAxZ3RMKSKYhoWsu1Unpjy4yXMcTJWkudVE1eq9rvHMajTkr8mrvwBe1zmiNsmMPuc2CdvbmFd9NtZ5P8S8az9X4",
-      "password": "nodeproxy",
-      "keepAlive": true,
-      "coin": "cryptonightv7",
-      "default": true
-    },	
-    {
       "hostname": "gulf.moneroocean.stream",
       "port": 10008,
       "ssl": false,
@@ -144,6 +132,11 @@
       "shareTargetTime": 15
     },
     "msr":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 15
+    },
+    "xtl":{
       "minDiff": 100,
       "maxDiff": 300000,
       "shareTargetTime": 15
