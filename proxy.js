@@ -642,7 +642,7 @@ function enumerateWorkerStats() {
         for (let pool in poolStates[coin] ){
             if (!poolStates[coin].hasOwnProperty(pool) || !activePools.hasOwnProperty(pool) || poolStates[coin][pool].devPool || poolStates[coin][pool].hashrate === 0) continue;
             if (pool_hs != "") pool_hs += ", ";
-            pool_hs += `${pool}/${poolStates[coin][pool].percentage}%`;
+            pool_hs += `${pool}/${poolStates[coin][pool].percentage.toFixed(2)}%`;
         }
     }
     if (pool_hs != "") pool_hs = " (" + pool_hs + ")";
