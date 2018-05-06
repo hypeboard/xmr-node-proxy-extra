@@ -6,7 +6,11 @@ It is advisable to fresh install. For http access, it's view-only, you should ch
 
 ## Feature
 - General coin by POW algorithm ("coin" : "cryptonightv7" , "coin" : "cryptonight", "coin" : "forknote", ...)  
-- Special cases : Turtlecoin --> "coin" : "trtl", IPBC --> "coin" : "ipbc", Masari --> "coin" : "msr"
+- Special cases : 
+  Turtlecoin --> "coin" : "trtl";
+  IPBC --> "coin" : "ipbc";
+  Masari --> "coin" : "msr";
+  Stellite --> "coin" : "xtl";
 - Http access (http://yourIP:8181)
 - Failover pools
 
