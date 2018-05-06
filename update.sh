@@ -1,3 +1,4 @@
+cd ~/xmr-node-proxy
 git checkout .
 git pull
 npm install

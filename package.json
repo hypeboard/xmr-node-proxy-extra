@@ -1,6 +1,6 @@
 {
   "name": "xmr-node-proxy",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Node proxy for XMR pools based on nodejs-pool, should support any coins that nodejs-pool does with little work",
   "main": "proxy.js",
   "scripts": {
@@ -39,7 +39,8 @@
     "semipool-ipbc-util": "git+https://github.com/bobbieltd/node-cryptoforknote-util.git#ipbc",
     "semipool-trtl-util": "git+https://github.com/bobbieltd/node-cryptoforknote-util.git#trtl",
     "cryptoforknote-util": "git+https://github.com/bobbieltd/node-cryptoforknote-util.git",
-    "semipool-heavy-hashing": "git+https://github.com/bobbieltd/node-cryptonight-hashing.git#heavy",	
+    "semipool-heavy-hashing": "git+https://github.com/bobbieltd/node-cryptonight-hashing.git#heavy",
+    "semipool-xtl-hashing": "git+https://github.com/bobbieltd/node-cryptonight-hashing.git#xtl",	
     "cryptonight-hashing": "git+https://github.com/bobbieltd/node-cryptonight-hashing.git"
   }
 }

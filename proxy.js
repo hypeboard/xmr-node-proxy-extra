@@ -10,7 +10,7 @@ const uuidV4 = require('uuid/v4');
 const support = require('./lib/support.js')();
 global.config = require('./config.json');
 
-const PROXY_VERSION = "0.1.3";
+const PROXY_VERSION = "0.1.4";
 
 /*
  General file design/where to find things.
@@ -202,6 +202,8 @@ function Pool(poolData){
     if (poolData.hasOwnProperty('allowSelfSignedSSL')){
         this.allowSelfSignedSSL = !poolData.allowSelfSignedSSL;
     }
+//    this.algo = poolData.algo;
+//    this.blob_type = poolData.blob_type;
 
     setInterval(function(pool) {
         if (pool.keepAlive && is_active_pool(pool.hostname)) pool.sendData('keepalived');
@@ -369,6 +371,8 @@ function balanceWorkers(){
             } else if (is_active_pool(poolName)) {
                 poolStates[pool.coin].totalPercentage += pool.share;
                 ++ poolStates[pool.coin].activePoolCount;
+            } else {
+                console.error(`${global.threadName}Pool ${poolName} is disabled due to issues with it`);
             }
             if (!minerStates.hasOwnProperty(pool.coin)){
                 minerStates[pool.coin] = {
@@ -728,7 +732,7 @@ function handlePoolMessage(jsonData, hostname){
         }
     }
 }
-
+    	
 function handleNewBlockTemplate(blockTemplate, hostname){
     let pool = activePools[hostname];
     console.log(`Received new block template on ${blockTemplate.height} height with ${blockTemplate.target_diff} target difficulty from ${pool.hostname}`);
@@ -740,6 +744,8 @@ function handleNewBlockTemplate(blockTemplate, hostname){
         debug.pool('Storing the previous block template');
         pool.pastBlockTemplates.enq(pool.activeBlocktemplate);
     }
+//    if (!blockTemplate.algo) blockTemplate.algo = pool.algo;
+//    if (!blockTemplate.blob_type) blockTemplate.blob_type = pool.blob_type;
     pool.activeBlocktemplate = new pool.coinFuncs.MasterBlockTemplate(blockTemplate);
     for (let id in cluster.workers){
         if (cluster.workers.hasOwnProperty(id)){
@@ -753,7 +759,21 @@ function handleNewBlockTemplate(blockTemplate, hostname){
 }
 
 function is_active_pool(hostname) {
-    return activePools[hostname].socket && activePools[hostname].active && activePools[hostname].activeBlocktemplate !== null;
+    let pool = activePools[hostname];
+    if (!pool.socket || !pool.active || pool.activeBlocktemplate === null) return false;
+
+    let top_height = 0;
+    for (let poolName in activePools){
+        if (!activePools.hasOwnProperty(poolName)) continue;
+        let pool2 = activePools[poolName];
+        if (pool2.coin != pool.coin) continue;
+        if (!pool2.socket || !pool2.active || pool2.activeBlocktemplate === null) continue;
+        if (Math.abs(pool2.activeBlocktemplate.height - pool.activeBlocktemplate.height) > 1000) continue; // different coin templates, can't compare here
+        if (pool2.activeBlocktemplate.height > top_height) top_height = pool2.activeBlocktemplate.height;
+    }
+
+    if (pool.activeBlocktemplate.height < top_height - 5) return false;
+    return true;
 }
 
 // Miner Definition
@@ -806,13 +826,13 @@ function Miner(id, params, ip, pushMessage, portData, minerSocket) {
         this.error = "Too many options in the login field";
         this.valid_miner = false;
     }
-	this.fixed_diff = true;
-    this.difficulty = portData.diff;
+
     if (activePools[this.pool].activeBlocktemplate === null){
         this.error = "No active block template";
         this.valid_miner = false;
     }
-
+        this.fixed_diff = true;
+        this.difficulty = portData.diff;
     // Verify if user/password is in allowed client connects
     if (!isAllowedLogin(this.user, this.password)) {
         this.error = "Unauthorized access";
@@ -1061,10 +1081,10 @@ function activateHTTP() {
 			let poolHashrate = [];
 			let tablePool = "";
 			let tableBody = "";
-    		for (let workerID in activeWorkers) {
+    			for (let workerID in activeWorkers) {
 				if (!activeWorkers.hasOwnProperty(workerID)) continue;
 				for (let minerID in activeWorkers[workerID]){
-                	if (!activeWorkers[workerID].hasOwnProperty(minerID)) continue;
+                			if (!activeWorkers[workerID].hasOwnProperty(minerID)) continue;
 					let miner = activeWorkers[workerID][minerID];
 					if (typeof(miner) === 'undefined' || !miner) continue;	
 					let name = (miner.identifier && miner.identifier != "x") ? miner.identifier + " (" + miner.ip + ")" : miner.ip;
@@ -1087,12 +1107,12 @@ function activateHTTP() {
 					`;
 				}
 			}
-    		for (let poolName in poolHashrate) {
+    			for (let poolName in poolHashrate) {
 				let poolPercentage = (100*poolHashrate[poolName]/totalHashrate).toFixed(2);
 				tablePool += `
 				<h2> ${poolName} : ${poolHashrate[poolName]} H/S or ${poolPercentage} %</h2>
 				`;
-			}			
+			}	
 			res.writeHead(200, {'Content-type':'text/html'});
 			res.write(`
 <html lang="en"><head>
