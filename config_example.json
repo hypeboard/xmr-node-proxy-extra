@@ -75,6 +75,7 @@
   "httpPort": "8181",
   "addressWorkerID": false,
   "minerInactivityTime": "120",
+  "email" : "reservedfeature@gmail.com-60",
   "coinSettings": {
     "cryptonight":{
       "minDiff": 100,
