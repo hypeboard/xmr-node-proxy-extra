@@ -10,7 +10,7 @@ const uuidV4 = require('uuid/v4');
 const support = require('./lib/support.js')();
 global.config = require('./config.json');
 
-const PROXY_VERSION = "0.1.4";
+const PROXY_VERSION = "0.1.5";
 
 /*
  General file design/where to find things.
@@ -843,8 +843,6 @@ function Miner(id, params, ip, pushMessage, portData, minerSocket) {
     this.heartbeat();
 
     // VarDiff System
-    this.shareTimeBuffer = support.circularBuffer(8);
-    this.shareTimeBuffer.enq(this.coinSettings.shareTargetTime);
     this.lastShareTime = Date.now() / 1000 || 0;
 
     this.shares = 0;
@@ -890,7 +888,6 @@ function Miner(id, params, ip, pushMessage, portData, minerSocket) {
 
     this.setNewDiff = function (difficulty) {
         this.newDiff = Math.round(difficulty);
-        debug.diff(global.threadName + "Difficulty: " + this.newDiff + " For: " + this.logString + " Time Average: " + this.shareTimeBuffer.average(this.lastShareTime) + " Entries: " + this.shareTimeBuffer.size() + "  Sum: " + this.shareTimeBuffer.sum());
         if (this.newDiff > this.coinSettings.maxDiff) {
             this.newDiff = this.coinSettings.maxDiff;
         }
@@ -1052,9 +1049,7 @@ function handleMinerData(method, params, ip, portData, sendReply, pushMessage, m
                 return;
             }
 
-            let now = Date.now() / 1000 || 0;
-            miner.shareTimeBuffer.enq(now - miner.lastShareTime);
-            miner.lastShareTime = now;
+            miner.lastShareTime = Date.now() / 1000 || 0;
 
             sendReply(null, {status: 'OK'});
             break;
@@ -1113,7 +1108,7 @@ function activateHTTP() {
 			res.writeHead(200, {'Content-type':'text/html'});
 			res.write(`
 <html lang="en"><head>
-	<title>XNP Hashrate Monitor</title>
+	<title>XNP v${PROXY_VERSION} Hashrate Monitor</title>
 	<meta charset="utf-8">
 	<meta http-equiv="refresh" content="15">
 	<style>
@@ -1139,7 +1134,7 @@ function activateHTTP() {
 	  }
 	</style>
 </head><body>
-	<h1>XNP Hashrate Monitor</h1>
+	<h1>XNP v${PROXY_VERSION} Hashrate Monitor</h1>
 	<h2>Workers: ${totalWorkers}, Hashrate: ${totalHashrate}</h2>
 	${tablePool}
 	<table class="sorted-table">
