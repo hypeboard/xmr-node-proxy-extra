@@ -4,6 +4,9 @@ Donations are for devs (if available). Based on MoneroOcean and Snipa xmr-node-p
 
 It is advisable to fresh install. For http access, it's view-only, you should change accessControl.json if you don't want others to access it.
 
+## Proxy codes updates
+- Inside your proxy directory, run --> git pull && npm install
+
 ## Feature
 - General coin by POW algorithm ("coin" : "cryptonightv7" , "coin" : "cryptonight", "coin" : "forknote", ...)  
 - Http access (http://yourIP:8181)
