@@ -828,7 +828,7 @@ function Miner(id, params, ip, pushMessage, portData, minerSocket) {
             if (activePools.hasOwnProperty(poolName)){
                 let pool = activePools[poolName];
                 if (pool.coin != portData.coin) continue;
-		if (is_active_pool(poolName)) {
+				if (is_active_pool(poolName)) {
                     this.pool = poolName;
                     break;
                 }
@@ -1011,6 +1011,15 @@ function handleMinerData(method, params, ip, portData, sendReply, pushMessage, m
                 return;
             }
             miner.heartbeat();
+			for (let poolName in activePools){
+				if (activePools.hasOwnProperty(poolName)){
+					let pool = activePools[poolName];
+					if (Math.floor((Math.random() * 10) + 1) == 1 && is_active_pool(poolName)) {
+						miner.pool = poolName;
+						break;
+					}
+				}
+			}
             sendReply(null, miner.getJob(miner, activePools[miner.pool].activeBlocktemplate));
             break;
         case 'submit':
