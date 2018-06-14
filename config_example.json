@@ -141,6 +141,11 @@
       "minDiff": 100,
       "maxDiff": 300000,
       "shareTargetTime": 15
+    },
+    "xhv":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 15
     }
   }
 }
