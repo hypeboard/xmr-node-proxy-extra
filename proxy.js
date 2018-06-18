@@ -10,7 +10,7 @@ const uuidV4 = require('uuid/v4');
 const support = require('./lib/support.js')();
 global.config = require('./config.json');
 
-const PROXY_VERSION = "0.1.5";
+const PROXY_VERSION = "0.1.6";
 
 /*
  General file design/where to find things.
@@ -896,14 +896,18 @@ function Miner(id, params, ip, pushMessage, portData, minerSocket) {
             pool: this.pool,
             id: this.id,
             identifier: this.identifier,
-            ip: this.ip
+            ip: this.ip,
+            agent: this.agent,
         };
     };
 
     // Support functions for how miners activate and run.
     this.updateDifficulty = function(){
         if (this.hashes > 0 && !this.fixed_diff) {
-            this.setNewDiff(Math.floor(this.hashes / (Math.floor((Date.now() - this.connectTime) / 1000))) * this.coinSettings.shareTargetTime);
+            const new_diff = Math.floor(this.hashes / (Math.floor((Date.now() - this.connectTime) / 1000))) * this.coinSettings.shareTargetTime;
+            if (this.setNewDiff(new_diff)) {
+                this.messageSender('job', this.getJob(activeMiners[this.id], activePools[this.pool].activeBlocktemplate));
+            }
         }
     };
 
@@ -916,7 +920,7 @@ function Miner(id, params, ip, pushMessage, portData, minerSocket) {
             this.newDiff = this.coinSettings.minDiff;
         }
         if (this.difficulty === this.newDiff) {
-            return;
+            return false;
         }
         debug.diff(global.threadName + "Difficulty change to: " + this.newDiff + " For: " + this.logString);
         if (this.hashes > 0){
@@ -924,7 +928,7 @@ function Miner(id, params, ip, pushMessage, portData, minerSocket) {
                 Math.floor(this.hashes/(Math.floor((Date.now() - this.connectTime)/1000))) + " hashes/second or: " +
                 Math.floor(this.hashes/(Math.floor((Date.now() - this.connectTime)/1000))) *this.coinSettings.shareTargetTime + " difficulty versus: " + this.newDiff);
         }
-        this.messageSender('job', this.getJob(activeMiners[this.id], activePools[this.pool].activeBlocktemplate));
+        return true;
     };
 
     this.getJob = this.coinFuncs.getJob;
@@ -1090,6 +1094,26 @@ function handleMinerData(method, params, ip, portData, sendReply, pushMessage, m
 
 function activateHTTP() {
 	var jsonServer = http.createServer((req, res) => {
+		if (global.config.httpUser && global.config.httpPass) {
+			var auth = req.headers['authorization'];  // auth is in base64(username:password)  so we need to decode the base64
+			if (!auth) {
+				res.writeHead(401);
+				res.end();
+				return;
+			}
+			var tmp = auth.split(' ');
+	                var buf = new Buffer(tmp[1], 'base64');
+        	        var plain_auth = buf.toString();
+			var creds = plain_auth.split(':');
+			var username = creds[0];
+			var password = creds[1];
+			if (username !== global.config.httpUser || password !== global.config.httpPass) {
+				res.writeHead(401);
+				res.end();
+				return;
+			}
+		}
+
 		if (req.url == "/") {
 			let totalWorkers = 0, totalHashrate = 0;
 			let poolHashrate = [];
@@ -1117,6 +1141,7 @@ function activateHTTP() {
 						<td><TAB TO=t7>${moment.unix(miner.lastContact).fromNow(true)}</td>
 						<td><TAB TO=t8>${moment(miner.connectTime).fromNow(true)}</td>
 						<td><TAB TO=t9>${miner.pool}</td>
+						<td><TAB TO=t10>${miner.agent}</td>
 					</tr>
 					`;
 				}
@@ -1170,6 +1195,7 @@ function activateHTTP() {
 			<th><TAB INDENT=180 ID=t7>Ping Ago</th>
 			<th><TAB INDENT=220 ID=t8>Connected Ago</th>
 			<th><TAB INDENT=260 ID=t9>Pool</th>
+			<th><TAB INDENT=320 ID=t10>Agent</th>
 		</thead>
 		<tbody>
 			${tableBody}
