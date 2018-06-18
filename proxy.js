@@ -1110,8 +1110,9 @@ function activateHTTP() {
 			var username = creds[0];
 			var password = creds[1];
 			if (username !== global.config.httpUser || password !== global.config.httpPass) {
-				res.writeHead(401);
-				res.end();
+				res.statusCode = 401;
+				res.setHeader('WWW-Authenticate', 'Basic realm="Secure Area"');
+				res.end('<html><body>Wrong login.</body></html>');
 				return;
 			}
 		}
