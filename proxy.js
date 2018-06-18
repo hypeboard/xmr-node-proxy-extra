@@ -846,7 +846,7 @@ function Miner(id, params, ip, pushMessage, portData, minerSocket) {
         this.valid_miner = false;
     }
 
-    if (activePools[this.pool] || activePools[this.pool].activeBlocktemplate === null){
+    if (!activePools[this.pool] || activePools[this.pool].activeBlocktemplate === null){
         this.error = "No active block template";
         this.valid_miner = false;
     }
