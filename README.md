@@ -4,8 +4,8 @@ Donations are for devs (if available). Based on MoneroOcean and Snipa xmr-node-p
 
 It is advisable to fresh install. For http access, it's view-only, you should change accessControl.json if you don't want others to access it.
 
-## Proxy codes updates
-- Inside your proxy directory, run --> git pull && npm install
+## Proxy upgrade to newer version
+- ~/xmr-node-proxy/update.sh or ./update.sh
 
 ## Feature
 - General coin by POW algorithm ("coin" : "cryptonightv7" , "coin" : "cryptonight", "coin" : "forknote", ...)  
@@ -16,9 +16,6 @@ It is advisable to fresh install. For http access, it's view-only, you should ch
 - IPBC --> "coin" : "ipbc";
 - Masari --> "coin" : "msr";
 - Stellite --> "coin" : "xtl";
-
-## Proxy upgrade to newer version
-- ~/xmr-node-proxy/update.sh or ./update.sh
 
 ## HTTP monitoring by browser
 - In config.json
