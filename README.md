@@ -26,6 +26,11 @@ It is advisable to fresh install. For http access, it's view-only, you should ch
 - Monitoring your rig by browser on any devices : http://11.22.33.44:8181 (replacing 11.22.33.44 by your proxy's public Internet address)
 ![alt text](https://raw.githubusercontent.com/bobbieltd/xmr-node-proxy/master/xnpexample.png)
 
+## HTTP password access
+- In config.json if httpUser or httpPass is not empty, http access will be secured
+  "httpUser": "admin",
+  "httpPass": "admin",
+  
 ## Balancing with backup pools
 1. Specify at least one main pool with non zero share and "default: true". Sum of all non zero pool shares should be equal to 100 (percent).
 
