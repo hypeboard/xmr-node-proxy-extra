@@ -2,7 +2,7 @@
 
 Donations are for devs (if available). Based on MoneroOcean and Snipa xmr-node-proxy.~
 
-It is advisable to fresh install. For http access, it's view-only, you should change accessControl.json if you don't want others to access it.
+It is advisable to fresh install. For http access, it's view-only but you can still secure access with login in config.json
 
 ## Proxy upgrade to newer version
 - ~/xmr-node-proxy/update.sh or ./update.sh
@@ -11,6 +11,7 @@ It is advisable to fresh install. For http access, it's view-only, you should ch
 - General coin by POW algorithm ("coin" : "cryptonightv7" , "coin" : "cryptonight", "coin" : "forknote", ...)  
 - Http access (http://yourIP:8181)
 - Failover pools
+
 ## Special cases : 
 - Turtlecoin --> "coin" : "trtl";
 - IPBC --> "coin" : "ipbc";
