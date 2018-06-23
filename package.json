@@ -36,7 +36,6 @@
     "uuid": "3.0.1"
   },
   "optionalDependencies": {
-    "semipool-ipbc-util": "git+https://github.com/bobbieltd/node-cryptoforknote-util.git#ipbc",
     "semipool-trtl-util": "git+https://github.com/bobbieltd/node-cryptoforknote-util.git#trtl",
     "cryptoforknote-util": "git+https://github.com/bobbieltd/node-cryptoforknote-util.git",
     "semipool-heavy-hashing": "git+https://github.com/bobbieltd/node-cryptonight-hashing.git#heavy",
