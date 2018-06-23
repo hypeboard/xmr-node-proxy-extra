@@ -7,5 +7,5 @@ git stash
 git checkout . &&\
 git pull &&\
 npm install &&\
-echo "Proxy update finished ! You still need to restart the proxy by pm2."
+echo "Proxy update finished ! You still need to restart the proxy by pm2 or add new parameters in config.json to use new features."
 echo "Recommended command : pm2 restart proxy. However, you can use pm2 list to check."

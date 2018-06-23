@@ -1,6 +1,6 @@
 # xmr-node-proxy
 
-Donations are for devs (if available). Based on MoneroOcean and Snipa xmr-node-proxy.~
+Donations are for devs (if available). Based on MoneroOcean and Snipa xmr-node-proxy.
 
 It is advisable to fresh install. For http access, it's view-only but you can still secure access with login in config.json
 
@@ -12,11 +12,12 @@ It is advisable to fresh install. For http access, it's view-only but you can st
 - Http access (http://yourIP:8181)
 - Failover pools
 
-## Special cases : 
+## Special algo cases : 
 - Turtlecoin --> "coin" : "trtl";
-- IPBC --> "coin" : "ipbc";
+- Bittube --> "coin" : "tube";
 - Masari --> "coin" : "msr";
 - Stellite --> "coin" : "xtl";
+- Haven --> "coin" : "xhv";
 
 ## HTTP monitoring by browser
 - In config.json
@@ -93,7 +94,7 @@ pm2 save
 You can check the status of your proxy by either issuing
 
 ```
-pm2 logs proxy
+pm2 log proxy
 ```
 
 or using the pm2 monitor
