@@ -13,18 +13,6 @@
       "default": true
     },
     {
-      "hostname": "gulf.moneroocean.stream",
-      "port": 10008,
-      "ssl": false,
-      "allowSelfSignedSSL": false,
-      "share": 50,
-      "username": "4Aio2FxFmciVKbu1JabGQGAvD3hEaL95DebaAq9td2UDLdSSM3fZNfWLfqjBkFKYjB2d9pAJw2F7Yh9rFZrEsCvE94277HJ",
-      "password": "nodeproxy",
-      "keepAlive": true,
-      "coin": "cryptonightv7",
-      "default": true
-    },
-    {
       "hostname": "pool.trtl.semipool.com",
       "port": 5555,
       "ssl": false,
@@ -89,11 +77,6 @@
       "maxDiff": 300000,
       "shareTargetTime": 15
     },
-    "cryptonightlight":{
-      "minDiff": 100,
-      "maxDiff": 300000,
-      "shareTargetTime": 15
-    },
     "cryptonightlightv7":{
       "minDiff": 100,
       "maxDiff": 300000,
@@ -104,11 +87,6 @@
       "maxDiff": 300000,
       "shareTargetTime": 15
     }, 
-    "forknotev7":{
-      "minDiff": 100,
-      "maxDiff": 300000,
-      "shareTargetTime": 15
-    },
     "cryptonightheavy":{
       "minDiff": 100,
       "maxDiff": 300000,
@@ -129,7 +107,7 @@
       "maxDiff": 300000,
       "shareTargetTime": 10
     },
-    "ipbc":{
+    "tube":{
       "minDiff": 100,
       "maxDiff": 300000,
       "shareTargetTime": 15
@@ -145,6 +123,11 @@
       "shareTargetTime": 15
     },
     "xhv":{
+      "minDiff": 100,
+      "maxDiff": 300000,
+      "shareTargetTime": 15
+    },
+    "lok":{
       "minDiff": 100,
       "maxDiff": 300000,
       "shareTargetTime": 15
